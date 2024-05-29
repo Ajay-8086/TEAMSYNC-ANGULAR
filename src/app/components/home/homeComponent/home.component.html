@@ -1,0 +1,78 @@
+<!-- header starting -->
+<app-home-header [isScrolled]="isScrolled"></app-home-header>
+<!-- header ending -->
+
+<!-- hero section starts-->
+<div class="hero md:h-[50rem] lg:h-[70rem] h-[40rem] mt-32 ">
+  <div class="w-full flex flex-col gap-20 mx-auto ">
+    <div class="md:w-[45%] w-[90%] m-auto h-full flex flex-col justify-center items-center text-center gap-5 leading-6">
+      <h1 class="font-semibold md:text-4xl  lg:text-5xl xl:text-7xl text-2xl font-basi ">One Tool For Doing It All Together</h1>
+      <p class="text-gray-400 md:text-xl text-sm">
+        Team sync is a user friendly platform that all teams can utilize to<br>
+        collaborate and complete high quality work more quickly
+      </p>
+      <a routerLink="/register" class="btn btn-primary md:w-[10rem] md:h-[2.7rem] w-[7rem] h-8 bg-customBlue text-white rounded-md font-bold md:pt-2 pt-1  hover:bg-black transition ease-in  duration-500">Get Started</a>
+    </div>
+    <div class="w-[80%] flex justify-center m-auto ">
+      <img src="../../../../assets/images/hero-iamge.png" alt="Hero Image" class="w-full md:h-auto h-[18rem]"> 
+    </div>
+  </div>
+</div>
+<!-- hero section ends -->
+
+<!-- team section startss  -->
+<app-home-team></app-home-team>
+<!-- team section ends  -->
+
+<!-- integration section starts -->
+<div class=" w-full h-[58rem] md:h-[30rem] ">
+  <div class="w-[80%]  flex  m-auto items-center  justify-center h-full md:flex-row flex-col md:p-0 p-5">
+   <div class="md:w-1/2 h-[20rem]  w-full  m-auto  md:text-start text-center">
+      <div class="w-[90%] m-auto h-full flex flex-col justify-start  gap-5 leading-6">
+        <h1 class="text-customBlue  md:text-lg text-base font-medium">INTEGRATION</h1>
+        <h1 class="font-semibold md:text-3xl  lg:text-4xl xl:text-6xl text-2xl">Integrate With Your Favourite Apps</h1>
+        <p class="text-gray-400 md:text-xl text-sm">
+          You can use your favourite work tools in one place,<br>from start to finish.
+        </p>
+      </div>
+   </div> 
+   <div class="md:w-1/2 w-full flex m-auto justify-around md:flex-row flex-col md:items-start  items-center md:gap-0 gap-5">
+    <div class="card p-2 bg-white rounded-[2rem] border border-solid h-[20rem] md:w-[45%] w-[80%]">
+      <div class="card rounded-[1.6rem] border border-solid h-[19rem] flex flex-col justify-center">
+        <div class="mb-4 md:mb-2  md:px-3 px-1 h-[31%]  border-2 md:w-[37%] ms-2 rounded-3xl w-fit">
+          <img src="../../../../assets/images/g-meet.png" alt="Card Image 1" class=" rounded-t-[1.6rem] h-full ">
+        </div>
+        <h3 class="text-2xl font-semibold mb-2 px-3">Google Meet</h3>
+        <p class="text-gray-600-xl text-gray-400 text-base px-3 pb-3">Turn action items from meetings into task in TeamSync.</p>
+      </div>
+    </div> 
+    <div class="card p-2 bg-white rounded-[2rem] border border-solid h-[20rem] md:w-[45%]  w-[80%]">
+      <div class="card rounded-[1.6rem] border border-solid h-[19rem] flex flex-col justify-center">
+        <div class="md:mb-2 mb-4 h-[31%]  border-2 md:w-[37%] ms-2 p-3 rounded-3xl w-fit ">
+          <img src="../../../../assets/images/slack.png" alt="Card Image 1" class=" rounded-t-[1.6rem] h-full ">
+        </div>
+        <h3 class="text-2xl font-semibold mb-2  px-3">Slack</h3>
+        <p class="text-gray-600-xl text-gray-400 text-base px-3">For communication, even comment on TeamSync tasks and more on Slack.</p>
+      </div>
+    </div> 
+   </div>
+  </div>
+</div>
+<!-- integration section ends  -->
+
+<!-- top footer section start  -->
+<div class="w-full h-[20rem] bg-customBlue md:h-[25rem]">
+  <div class="md:w-[45%] w-[90%] m-auto h-full flex flex-col justify-center items-center text-center gap-10 leading-6">
+    <h1 class="font-semibold md:text-3xl  lg:text-4xl xl:text-6xl text-xl font-basic text-white ">A Better Way To Work Today, Together</h1>
+    <p class="text-white md:text-xl text-sm">
+      Team sync is a user friendly platform that all teams can utilize to<br>
+      collaborate and complete high quality work more quickly
+    </p>
+    <a routerLink="/register" class="btn btn-primary md:w-[10rem] md:h-[2.7rem] w-[7rem] h-8 bg-blue-500  text-gray-100 rounded-md font-bold md:pt-2 pt-1  hover:bg-black transition ease-in  duration-500">Get Started</a>
+  </div>
+</div>
+<!-- top footer section ends  -->
+
+<!-- footer section start  -->
+<app-home-footer></app-home-footer>
+<!-- footer section ends  -->

@@ -1,0 +1,14 @@
+
+.underline-hover {
+    
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#000000, #000000); /* Set background gradient (blue in this case) */
+    background-size: 0 4px; 
+    background-position: 0 100%; 
+    background-repeat: no-repeat;
+    transition: background-size .3s ease-in-out; 
+  }
+  
+  .underline-hover:hover {
+    background-size: 100% 2px; 
+  }
+  
