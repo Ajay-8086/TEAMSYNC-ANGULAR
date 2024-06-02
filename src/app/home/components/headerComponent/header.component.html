@@ -1,0 +1,13 @@
+<header id="header" class=" w-[100%] h-20 fixed mx-auto md:mx-0 my-auto top-0  overflow-x-hidden" [ngClass]="{'scrolled':isScrolled}">
+    <div class="w-[90%] flex justify-between  h-full m-auto md:w-[80%]">
+      <a routerLink="/auth/register" class="flex items-center ">
+        <!-- <img src="logo.png" alt="TeamSync Logo" class="h-8 w-8 mr-2"> -->
+        <i class="fa-brands fa-teamspeak   mr-2 font-black text-center md:text-4xl text-xl"></i>
+        <span class="text-xl font-bold">TeamSync</span>
+      </a>
+      <div class="flex items-center space-x-4">
+        <a routerLink="/auth/login" class="font-bold underline-hover  ">Login</a>
+        <a routerLink="auth/register" class="btn btn-primary sm:px-4 sm:py-2 text-sm md:text-base bg-customBlue text-white rounded-md font-bold px-2 py-1.5 hover:bg-black transition ease-in  duration-500" >Get Started</a>
+      </div>
+    </div>
+</header>

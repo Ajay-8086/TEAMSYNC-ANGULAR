@@ -2,7 +2,8 @@ import { Component } from "@angular/core";
 
 @Component({
     selector:'app-home-team',
-    templateUrl:'./team.component.html'
+    templateUrl:'./team.component.html',
+    styleUrls:['./team.component.css']
 })
 export class TeamComponent{
     cards:cards[]=[
@@ -22,6 +23,7 @@ export class TeamComponent{
         description: "Reconnect with the joy of creating fun among members"
     }
     ]
+ 
 }
 
 interface cards {

@@ -15,5 +15,6 @@ export class HomeComponent{
     ngOnInit(){
         // checking the initial scroll 
         this.isScrolled = window.scrollY > 0
+
     }
 }
