@@ -8,7 +8,7 @@
         <img src="../../../../assets/images/default_right.a801c0cc.svg" alt="Right Illustration" class="h-72">
       </div>
   
-    <!-- signup Form -->
+    <!-- Login Form -->
     <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-xl">
       <div class="flex justify-center mb-4 items-center">
         <a routerLink="/" class="flex items-center ">
@@ -16,13 +16,9 @@
           <span class="font-bold md:text-2xl  text-xl">TeamSync</span>
         </a>
       </div>
-      <h2 class="text-lg  text-center mb-6 text-customBlue ml-2 ">Signup  to continue</h2>
+      <h2 class="text-lg  text-center mb-6 text-customBlue ml-2 ">Login  to continue</h2>
   
       <form>
-        <div class="mb-4">
-            <label for="userName" class="block text-sm font-medium text-gray-700"> UserName</label>
-            <input type="text" id="userName" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your userName">
-          </div>
         <div class="mb-4">
           <label for="email" class="block text-sm font-medium text-gray-700"> Email</label>
           <input type="email" id="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your email">
@@ -31,15 +27,12 @@
             <label for="password" class="block text-sm font-medium text-gray-700"> Password</label>
             <input type="password" id="password" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your password">
           </div>
-          <div class="mb-4">
-            <label for="confirmPassword" class="block text-sm font-medium text-gray-700"> Confirm password</label>
-            <input type="password" id="confirmPassword" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your confirmPassword">
-          </div>
+         
         <button type="submit" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600">Continue</button>
       </form>
   
       <div class="mt-6 text-center ">
-        <a routerLink="/auth/login" class="text-sm text-blue-600 hover:underline">Already have an account?. Log in</a>
+        <p class="text-blue-600"><a routerLink="/auth/forgot" class="text-sm  hover:underline">can't login?</a><span> . </span><span><a routerLink="/auth/register" class="hover:underline text-sm">Create an account</a></span></p>
         
       </div>
   
