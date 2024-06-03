@@ -5,5 +5,8 @@ import { Component } from "@angular/core";
     templateUrl:'./login.component.html'
 })
 export class LoginComponent{
-    
+    passwordFieldType:string = 'password'
+    passwordVisibility(){
+        this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
+    }
 }

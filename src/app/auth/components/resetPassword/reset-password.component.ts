@@ -1,12 +1,11 @@
 import { Component } from "@angular/core";
 
 @Component({
-    selector:"app-register",
-    templateUrl:'./register.component.html',
-    styleUrls:['./register.component.css']
+    selector:'app-reset',
+    templateUrl:'./reset-password.component.html',
+    styleUrls:['./reset-password.component.css']
 })
-
-export class RegisterComponent{
+export class ResetPasswordComponent{
     passwordFieldType:string = 'password'
     passwordVisibility(){
         this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
