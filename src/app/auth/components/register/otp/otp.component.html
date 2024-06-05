@@ -1,4 +1,4 @@
-<h2 class="text-lg  text-center mb-6 text-customBlue ml-2 ">OTP verification</h2>
+<h2 class="text-lg  text-center mb-6 text-customBlue ml-2 ">OTP verification send to {{email}}</h2>
 <form  [formGroup]="otpForm" (ngSubmit)="verifyOtp()" class="bg-white p-6 rounded-lg  w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
     <div class="mb-4">
       <div id="otp" class="flex space-x-2 mt-1 justify-center">
@@ -34,6 +34,11 @@
     </div>
     <div class="flex flex-col gap-4 mt-1 justify-center md:w-[65%] w-[75%]   mx-auto">
         <button type="submit" class=" w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 disabled:hover:bg-blue-500" [disabled]="otpForm.invalid" >Submit</button>
-        <a href="#" class="text-sm text-blue-500 hover:underline mx-auto">Didn't receive the code? Resend</a>
+        <div *ngIf="otpCountdown > 0;else counting" class="self-center">
+          <p>Resend code in: {{ formatTimer(otpCountdown) }}</p>
+        </div>
+        <ng-template #counting>
+          <a href="#" class="text-sm text-blue-500 hover:underline mx-auto">Didn't receive the code? Resend</a>
+        </ng-template>
     </div>
 </form>

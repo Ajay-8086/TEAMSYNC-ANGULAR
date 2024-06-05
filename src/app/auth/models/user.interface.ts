@@ -4,4 +4,3 @@ export interface userInterface{
     password:string
     userId:string
 }
-

@@ -3,6 +3,7 @@ import { AuthService } from "../../services/auth.service";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { userInterface } from "../../models/user.interface";
+import { emailSerivice } from "../../services/userId.service";
 
 @Component({
     selector:"app-register",
@@ -11,7 +12,7 @@ import { userInterface } from "../../models/user.interface";
 })
 
 export class RegisterComponent{
-    constructor(private authService:AuthService,private fb:FormBuilder,private router:Router){}
+    constructor(private authService:AuthService,private fb:FormBuilder,private router:Router , private emailSerivice:emailSerivice){}
     passwordFieldType:string = 'password'
     // function to hide and show password
     passwordVisibility(){

@@ -5,11 +5,11 @@ import { BehaviorSubject } from "rxjs";
     providedIn:'root'
 })
 
-export class userIdService{
+export class emailSerivice{
     private userIdSource = new BehaviorSubject<string>('');
     // observable streams the user id
-    userId$ = this.userIdSource.asObservable() 
-    seUserId(userId:string){
-        this.userIdSource.next(userId)
+    email$ = this.userIdSource.asObservable() 
+    seUserId(email:string){
+        this.userIdSource.next(email)
     }
 }
