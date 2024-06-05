@@ -1,22 +1,25 @@
 <h2 class="text-lg  text-center mb-6 text-customBlue ml-2 ">OTP verification</h2>
-<form class="bg-white p-6 rounded-lg  w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+<form  [formGroup]="otpForm" (ngSubmit)="verifyOtp()" class="bg-white p-6 rounded-lg  w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
     <div class="mb-4">
       <div id="otp" class="flex space-x-2 mt-1 justify-center">
         <input type="number"
          #otp1
          (input)="autoInputChange(otp1,otp2)"
+         formControlName="otp1"
          maxlength="1"
           class="w-10 h-10 sm:w-12 sm:h-12 text-center p-2 sm:p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-green-500" 
         >
         <input type="number" 
         #otp2
         (input)="autoInputChange(otp2,otp3)"
+        formControlName="otp2"
         maxlength="1" 
         class="w-10 h-10 sm:w-12 sm:h-12 text-center p-2 sm:p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-green-500" 
         >
         <input type="number"
         #otp3
         (input)="autoInputChange(otp3,otp4)"
+        formControlName="otp3"
          maxlength="1" 
          class="w-10 h-10 sm:w-12 sm:h-12 text-center p-2 sm:p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-green-500"
         >
@@ -24,12 +27,13 @@
          maxlength="1" 
          #otp4
         (input)="autoInputChange(otp4,null)"
+        formControlName="otp4"
          class="w-10 h-10 sm:w-12 sm:h-12 text-center p-2 sm:p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-green-500"
          >
       </div>
     </div>
     <div class="flex flex-col gap-4 mt-1 justify-center md:w-[65%] w-[75%]   mx-auto">
-        <button type="submit" class=" w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600">Submit</button>
+        <button type="submit" class=" w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 disabled:hover:bg-blue-500" [disabled]="otpForm.invalid" >Submit</button>
         <a href="#" class="text-sm text-blue-500 hover:underline mx-auto">Didn't receive the code? Resend</a>
     </div>
 </form>

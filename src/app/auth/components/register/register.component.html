@@ -1,14 +1,18 @@
 
       <h2 class="text-lg  text-center mb-6 text-customBlue ml-2 ">Signup  to continue</h2>
   
-      <form>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <div class="mb-4">
             <label for="userName" class="block text-sm font-medium text-gray-700"> UserName</label>
-            <input type="text" id="userName" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your userName">
+            <input type="text" formControlName="userName" id="userName" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your userName">
+            <small class="text-red-500" *ngIf="userForm.get('userName')?.touched && userForm.get('userName')?.errors">User name name is required</small>
           </div>
         <div class="mb-4">
           <label for="email" class="block text-sm font-medium text-gray-700"> Email</label>
-          <input type="email" id="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your email">
+          <input type="email" id="email" formControlName="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your email">
+          <small class="text-red-500" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.errors?.['required'] ">Email is required</small>
+          <small class="text-red-500" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.errors?.['email'] ">Invalid email format</small>
+
         </div>
         <div class="relative w-full mb-4">
           <div class="absolute inset-y-0 right-0 flex items-center px-2 ">
@@ -20,13 +24,20 @@
                <i [ngClass]="passwordFieldType === 'password' ? 'fa-regular fa-eye' : 'fa-solid fa-eye'"></i>
             </button>
           </div>
-          <input type={{passwordFieldType}} id="password" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your password"> 
+          <input type={{passwordFieldType}} id="password" formControlName="password" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your password"> 
+          <small class="text-red-500" *ngIf="userForm.get('password')?.touched && userForm.get('password')?.errors?.['required']">Password is required</small>
+          <small class="text-red-500" *ngIf="userForm.get('password')?.touched && userForm.get('password')?.errors?.['minlength']">Password is required</small>
+
         </div>
           <div class="mb-4">
             <label for="confirmPassword" class="block text-sm font-medium text-gray-700"> Confirm password</label>
-            <input type="password" id="confirmPassword" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your confirmPassword">
+            <input type="password" id="confirmPassword" formControlName="confirmPassword" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your confirmPassword">
+            <small class="text-red-500" *ngIf="userForm.get('confirmPassword')?.touched && userForm.get('confirmPassword')?.errors">Confirm password is required</small>
           </div>
-        <button type="submit" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600">Continue</button>
+        <button type="submit" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 disabled:hover:bg-blue-500" [disabled]="userForm.invalid">Continue</button>
+         <div class=" w-full text-center mt-4">
+          <span class="text-red-500 ">{{errMsg}}</span>
+         </div>
       </form>
   
       <div class="mt-6 text-center ">
