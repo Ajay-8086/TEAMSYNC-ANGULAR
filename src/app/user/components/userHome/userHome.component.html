@@ -1,0 +1,9 @@
+<div class="flex flex-col w-full h-screen">
+    <div class="w-full">
+     <app-header (menuClicked)="sidebarToggling($event)"></app-header>
+    </div>
+    <div class="w-[15%]  fixed top-[4rem] left-[-100%] md:left-0" [ngClass]="{'sideBar':isSidebarClicked}">
+        <app-sidebar></app-sidebar> 
+    </div>
+</div>
+<router-outlet></router-outlet>

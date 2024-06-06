@@ -1,0 +1,40 @@
+<nav class="w-full h-16 border-b  overflow-x-hidden flex">
+  <div class=" border-r flex  w-[15%]">
+    <a routerLink="/user/home" class="items-center w-[90%] ms-5 flex-1 flex-wrap md:inline-flex hidden ">
+        <i class="fa-brands fa-teamspeak   mr-2 font-black text-center md:text-2xl text-xl"></i>
+        <span class="md:text-xl text-base  font-bold">TeamSync</span>
+    </a>
+    <button class="items-center ms-5 md:hidden inline-flex"  (click)="toggleSidebar()">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+  </div>
+    <div class="w-[80%] h-full mx-auto flex  justify-between items-center  overflow-x-hidden">
+        <ul class="flex space-x-4 md:space-x-6  list-none  h-full items-center text-base md:tex-lg text-gray-400">
+            <li routterLink="" class="space-x-2 hover:text-customBlue"  >
+                <i class="fa-solid fa-table"></i> 
+                <span class="md:inline hidden">Table</span>
+            </li>
+            <li routterLink="" class="space-x-2 hover:text-customBlue" >
+                <i class="fa-solid fa-chart-simple"></i>
+                <span class="md:inline hidden">Boards</span>
+            </li>
+            <li routterLink="" class="space-x-2 hover:text-customBlue" >
+                <i class="fa-solid fa-calendar-days"></i>
+                <span class="md:inline hidden">Calendar</span>
+            </li>
+        </ul>
+       <div class="flex items-center  gap-3 md:gap-6  justify-around">
+            <div class="relative">
+                <input type="text" placeholder="Search..." class="pl-10 pr-4 py-[.4rem] border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 md:inline hidden">
+                <svg class="w-5 h-5 text-gray-400 md:absolute static  top-2.5 left-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 3.5a7.5 7.5 0 0013.65 13.65z"></path></svg>
+            </div>
+            <a href="" class="relative">
+                <i class="fa-regular fa-bell text-2xl"></i>
+                <span class="absolute top-0 right-0 inline-block w-2.5 h-2.5 bg-pink-500 rounded-full"></span>
+            </a>
+            <button class="p-2 rounded-full bg-blue-800 text-white text-sm md:text-base ">
+                AT
+            </button>
+       </div>
+    </div>
+</nav>

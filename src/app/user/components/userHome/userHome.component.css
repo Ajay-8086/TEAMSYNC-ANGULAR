@@ -1,0 +1,6 @@
+.sideBar{
+    position: fixed;
+    left: 100;
+    z-index: 11;
+    width: 15%;
+}   
