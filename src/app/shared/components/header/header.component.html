@@ -1,11 +1,18 @@
 <nav class="w-full h-16 border-b  overflow-x-hidden flex">
-  <div class=" border-r flex  w-[15%]">
+  <div class=" md:border-r border-r-0 flex w-[208px]" [ngClass]="{'open':isSidebarOpen, 'close' : !isSidebarOpen}">
     <a routerLink="/user/home" class="items-center w-[90%] ms-5 flex-1 flex-wrap md:inline-flex hidden ">
-        <i class="fa-brands fa-teamspeak   mr-2 font-black text-center md:text-2xl text-xl"></i>
+        <i class="fa-brands fa-teamspeak   mr-2 text-center md:text-2xl text-xl"></i>
         <span class="md:text-xl text-base  font-bold">TeamSync</span>
     </a>
     <button class="items-center ms-5 md:hidden inline-flex"  (click)="toggleSidebar()">
-      <i class="fa-solid fa-bars text-xl"></i>
+      <i class="fa-solid fa-bars text-xl" *ngIf="isSidebarOpen else cross"></i>
+      <ng-template #cross >
+        <a routerLink="/user/home" class="flex-1 flex-wrap flex items-center w-[90%] ">
+            <i class="fa-brands fa-teamspeak  text-xl"></i>
+            <span class="text-base  font-bold">TeamSync</span>
+        </a>
+        <i class="fa-solid fa-xmark text-xl ps-4"></i>
+      </ng-template>
     </button>
   </div>
     <div class="w-[80%] h-full mx-auto flex  justify-between items-center  overflow-x-hidden">

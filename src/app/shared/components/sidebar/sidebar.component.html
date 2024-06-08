@@ -1,4 +1,4 @@
-<div class="w-full   border-r flex flex-col flex-grow ">
+<div class="w-full   border-r flex flex-col flex-grow h-screen">
     <div class="w-[90%] flex flex-col mx-auto flex-grow">
         <div class="h-44  flex w-full mx-auto border-b">
             <ul class="space-y-6  list-none flex flex-col md:text-[1rem] tex-base h-[75%] self-center w-[90%] mx-auto text-gray-400 ">
@@ -19,9 +19,9 @@
         <div class="flex-grow flex-col w-full mx-auto mt-4 " >
             <div class=" mx-auto w-[90%] flex items-center h-12 justify-between  text-gray-400">
                 <h3 class="font-bold">WorkSpaces</h3>
-                <a routerLink="" >
+                <button (click)="openDialogue()">
                     <i class="fa-regular fa-square-plus text-lg pb-2"></i>
-                </a>
+                </button>
             </div>
             <ul class="space-y-6  list-none flex flex-col  w-[90%] mx-auto text-black  ">
                 <li routerLink="/user/table" class="hover:text-customBlue flex gap-2">

@@ -9,6 +9,9 @@ module.exports = {
         customBlue: '#306bff', 
         customBgBlue:'#33bfff'
       },
+      backgroundImage:{
+        'formBg':"url('/assets/images/formbg.svg)"
+      }
     },
   },
   plugins: [],
