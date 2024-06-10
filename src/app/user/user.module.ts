@@ -5,9 +5,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { UserHomeComponent } from "./components/userHome/userHome.component";
 import { ContainerComponent } from "./components/containerComponent/container.coponent";
 import { MatDialogModule } from "@angular/material/dialog";
+import { AuthGaurd } from "../auth/services/authGaurd.service";
 
 const routes:Routes=[
-    {path:'',component:UserHomeComponent,
+    {path:'',component:UserHomeComponent,canActivate:[AuthGaurd],
         children:[
          {path:'home',component:ContainerComponent}
         ]

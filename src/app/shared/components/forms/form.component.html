@@ -5,28 +5,31 @@
   <div class="bg-white p-8 max-w-md w-full mx-4 md:mx-0 " >
       <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Let's build a Workspace</h1>
       <p class="text-gray-600 mb-6">Boost your productivity by making it easier for everyone to access boards in one location.</p>
-      <form>
+      <form [formGroup]="workspaceForm" (ngSubmit)="onSubmit()">
           <div class="mb-4">
-              <label class="block text-gray-700 font-semibold mb-2" for="workspaceName">Workspace name</label>
-              <input class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500" type="text" id="workspaceName" placeholder="Taco's Co.">
+              <label class="block text-gray-700  mb-2" for="workspaceName">Workspace name</label>
+              <input class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500" type="text" id="workspaceName" placeholder="Taco's Co." formControlName="name">
               <p class="text-gray-500 text-sm mt-1">This is the name of your company, team or organization.</p>
+              <small class="text-red-500" *ngIf="workspaceForm.get('name')?.touched && workspaceForm.get('name')?.errors">WorkspaceName is required</small>
           </div>
           <div class="mb-4">
-              <label class="block text-gray-700 font-semibold mb-2" for="workspaceType">Workspace type</label>
-              <select class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 bg-white" id="workspaceType">
-                  <option>Choose...</option>
+              <label class="block text-gray-700  mb-2" for="workspaceType">Workspace type</label>
+              <select class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 bg-white" id="workspaceType" formControlName="type" (focus)="onSelectedFocus()">
+                  <option *ngIf="!selectedFocus">Choose...</option>
                   <option>Team</option>
                   <option>Organization</option>
                   <option>Project</option>
               </select>
+              <small class="text-red-500" *ngIf="workspaceForm.get('type')?.touched && workspaceForm.get('type')?.errors">Select the workspace type</small>
           </div>
           <div class="mb-6">
-              <label class="block text-gray-700 font-semibold mb-2" for="workspaceDescription">Workspace description <span class="text-gray-400">(Optional)</span></label>
-              <textarea class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500" id="workspaceDescription" rows="4" placeholder="Our team organizes everything here."></textarea>
+              <label class="block text-gray-700  mb-2" for="workspaceDescription">Workspace description <span class="text-gray-400">(Optional)</span></label>
+              <textarea class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500" id="workspaceDescription" rows="4" placeholder="Our team organizes everything here." formControlName="description"></textarea>
               <p class="text-gray-500 text-sm mt-1">Get your members on board with a few words about your Workspace.</p>
           </div>
-          <button class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300" type="submit" disabled>Continue</button>
+          <button class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 disabled:hover:bg-blue-500"  type="submit" [disabled]="workspaceForm.invalid">Continue</button>
       </form>
+      <small class="text-green-500 ms-20">{{msg}}</small>
   </div>
   <div class=" items-center justify-center max-w-screen-md w-[400px]  md:flex hidden   bg-container">
       <img src="../../../../assets/images/formImage.svg" alt="Workspace Illustration" class="max-w-full h-auto">

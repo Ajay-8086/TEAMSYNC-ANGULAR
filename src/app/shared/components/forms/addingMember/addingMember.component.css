@@ -1,0 +1,5 @@
+/* styles.css or component-specific CSS file */
+.custom-multiselect .ui-multiselect-panel .ui-multiselect-items-wrapper .ui-multiselect-item {
+    background-color: #f7fafc; /* Set background color here */
+  }
+  

@@ -6,7 +6,9 @@ import { HomeModule } from './home/home.module';
 import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserModule } from './user/user.module';
-import { SharedModule } from './shared/shared.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/services/authInterceptor.service';
+import { SharedModule } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,9 +19,10 @@ import { SharedModule } from './shared/shared.module';
     HomeModule,
     AuthModule,
     BrowserAnimationsModule,
-    UserModule
+    UserModule,
+    
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

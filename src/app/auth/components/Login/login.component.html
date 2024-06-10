@@ -22,7 +22,7 @@
           <small class="text-red-500" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors">password required</small>
       </div>
          
-        <button type="submit" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600" [disabled]="loginForm.invalid">Continue</button>
+        <button type="submit" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 disabled:hover:bg-blue-500" [disabled]="loginForm.invalid">Continue</button>
         <span class="text-red-500 ">{{errMsg}}</span>
       </form>
   
