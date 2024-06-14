@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { workspaceFormService } from "../../services/workspaceForm.service";
-import { workspaceForm } from "../../model/workspaceForm.model";
+import { workspaceFormData } from "../../model/workspaceForm.model";
 
 @Component({
     selector:'app-forms',
@@ -26,17 +26,21 @@ export class FormComponent{
     msg:string=''
     // checking the selected focus
     selectedFocus:boolean=false
+    workspaceData!:workspaceFormData
+    // adding member component variable
+    memberComponent:boolean=false
+    //workspaceId
+    workspaceId:string =''
     // creating workspace form submission
     onSubmit(){
-        const workspaceData = this.workspaceForm.value as workspaceForm
-        this.workspaceService.creatWorkSpace(workspaceData).subscribe(
-            (response)=>{
-                console.log(response);
-                this.msg =  response.message
-                setTimeout(() => {
-                    this.dialoguClose()
-                    this.msg = ''
-                },1000);
+       this.workspaceData = this.workspaceForm.value as workspaceFormData
+       // adding member component
+       this.workspaceService.creatWorkSpace(this.workspaceData).subscribe(
+           (response)=>{
+               console.log(response);
+               this.msg =  response.message
+               this.workspaceId = response.workspaceId
+               this.memberComponent = true
             },
             (err)=>{
                 console.log(err);

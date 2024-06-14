@@ -1,63 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Member } from 'src/app/shared/model/member';
+import { workspaceFormData } from 'src/app/shared/model/workspaceForm.model';
+import { workspaceFormService } from 'src/app/shared/services/workspaceForm.service';
 
-interface User {
-  id: string;
-  name: string;
-}
 
 @Component({
   selector: 'app-addingMember',
   templateUrl: './addingMember.component.html',
 })
-export class AddingMemberComponent implements OnInit {
+export class AddingMemberComponent{
+  constructor(private workspaceService:workspaceFormService){}
   searchTerm: string = '';
-  filteredUsers: User[] = [];
-  selectedUsers: User[] = [];
-  showCreateNew: boolean = false;
-
-  mockUsers: User[] = [
-    { id: '1', name: 'shafinms21' },
-    { id: '2', name: 'Shafin' },
-    { id: '3', name: 'Sheikh Shafin Ahmad' },
-    { id: '4', name: 'Shafin' }
-  ];
-
-  constructor() { }
-
-  ngOnInit(): void { }
-
-  onSearch(): void {
-    if (this.searchTerm.length >= 3) {
+  // getting workspace id
+  @Input() id :string =''
+  // members array variable
+  searchResults: Member[] | any = [];
+ //selected user
+  selectedUser:Member[]=[]
+  // searching the available users
+  searching(){
+    if(this.searchTerm.length >= 3){
       console.log(this.searchTerm);
       
-      this.filteredUsers = this.mockUsers.filter(user => 
-        user.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-      this.showCreateNew = this.filteredUsers.length === 0;
-    } else {
-      this.filteredUsers = [];
-      this.showCreateNew = false;
+      this.workspaceService.searchingMembers(this.searchTerm).subscribe(
+        (result)=>{
+          this.searchResults = result
+          console.log(this.searchResults);
+          
+        },
+      (err)=>{
+        console.log(err);
+        
+      }
+      )
     }
   }
-
-  selectUser(user: User): void {
-    if (!this.selectedUsers.includes(user)) {
-      this.selectedUsers.push(user);
+  // selected user the user 
+  selectUser(user:Member):void{
+    if(!this.selectedUser.includes(user)){
+      this.selectedUser.push(user)
     }
-    this.searchTerm = '';
-    this.filteredUsers = [];
-    this.showCreateNew = false;
+    this.searchTerm = ''
+    this.searchResults=[]
+  }
+  // removing the selected users 
+  removeUser(user:Member):void{
+    this.selectedUser = this.selectedUser.filter(u=>u!=user)
   }
 
-  removeUser(user: User): void {
-    this.selectedUsers = this.selectedUsers.filter(u => u !== user);
-  }
-
-  createNewInvite(): void {
-    const newUser: User = { id: '', name: this.searchTerm };
-    this.selectedUsers.push(newUser);
-    this.searchTerm = '';
-    this.filteredUsers = [];
-    this.showCreateNew = false;
-  }
 }

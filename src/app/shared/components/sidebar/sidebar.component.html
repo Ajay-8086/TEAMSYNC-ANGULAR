@@ -2,17 +2,23 @@
     <div class="w-[90%] flex flex-col mx-auto flex-grow">
         <div class="h-44  flex w-full mx-auto border-b">
             <ul class="space-y-6  list-none flex flex-col md:text-[1rem] tex-base h-[75%] self-center w-[90%] mx-auto text-gray-400 ">
-                <li routerLink="/user/table" class="hover:text-customBlue flex gap-3 items-center">
+                <li >
+                    <a routerLink="/user/home" class="hover:text-customBlue flex gap-3 items-center " routerLinkActive="activeLink">
                         <mat-icon aria-hidden="false"  fontIcon="home"></mat-icon>
-                        <span class="">Table</span>
+                        <span class="">Home</span>
+                    </a>
                 </li>
-                <li routerLink="/user/recent" class="hover:text-customBlue flex gap-3 items-center">
+                <li  >
+                    <a routerLink="/user/recent" class="hover:text-customBlue flex gap-3 items-center" routerLinkActive="activeLink">
                         <mat-icon aria-hidden="false"  fontIcon="history" ></mat-icon>
                         <span class="">Recent</span>
+                    </a>
                 </li>
-                <li routerLink="/user/stared" class="hover:text-customBlue flex gap-3 items-center">  
+                <li>
+                    <a routerLink="/user/stared" class="hover:text-customBlue flex gap-3 items-center" routerLinkActive="activeLink">
                         <mat-icon aria-hidden="false"  fontIcon="stars" ></mat-icon>
                         <span class="">Stared</span>
+                    </a>  
                 </li>
             </ul>
         </div>
@@ -24,9 +30,11 @@
                 </button>
             </div>
             <ul class="space-y-6  list-none flex flex-col  w-[90%] mx-auto text-black  ">
-                <li routerLink="/user/table" class="hover:text-customBlue flex gap-2">
-                         <mat-icon aria-hidden="false"  fontIcon="radio_button_checked" class="text-red-900 text-base" ></mat-icon>
-                        <span class="">WorkSpaces1</span>
+                <li >
+                    <a routerLink="/user/table" class="hover:text-customBlue flex gap-2 ">
+                        <mat-icon aria-hidden="false"  fontIcon="radio_button_checked" class="text-red-900 text-base" ></mat-icon>
+                       <span class="">WorkSpaces1</span>
+                    </a>
                 </li>
                 <li routerLink="/user/table" class="hover:text-customBlue flex gap-2">
                          <mat-icon aria-hidden="false"  fontIcon="radio_button_checked" class="text-red-900 text-base" ></mat-icon>

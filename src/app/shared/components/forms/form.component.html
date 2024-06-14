@@ -2,7 +2,7 @@
   <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" (click)="dialoguClose()">
     <i class="fa-solid fa-xmark text-xl ps-4"></i>
   </button>
-  <div class="bg-white p-8 max-w-md w-full mx-4 md:mx-0 " >
+  <div class="bg-white p-8 max-w-md w-full mx-4 md:mx-0" *ngIf="!memberComponent else addingComponent"  >
       <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Let's build a Workspace</h1>
       <p class="text-gray-600 mb-6">Boost your productivity by making it easier for everyone to access boards in one location.</p>
       <form [formGroup]="workspaceForm" (ngSubmit)="onSubmit()">
@@ -31,6 +31,9 @@
       </form>
       <small class="text-green-500 ms-20">{{msg}}</small>
   </div>
+  <ng-template #addingComponent>
+    <app-addingMember [id]="workspaceId"></app-addingMember>
+  </ng-template>
   <div class=" items-center justify-center max-w-screen-md w-[400px]  md:flex hidden   bg-container">
       <img src="../../../../assets/images/formImage.svg" alt="Workspace Illustration" class="max-w-full h-auto">
   </div>

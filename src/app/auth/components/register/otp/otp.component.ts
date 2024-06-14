@@ -15,9 +15,15 @@ export class OtpComponent{
         // auto focus change to next input
         if(currenInput.value.length === currenInput.maxLength){
             nextInput?.focus()
+            if(nextInput?.value){
+                nextInput.select()
+            }
         // auto focus change to previous input     
         }else if (currenInput.value.length === 0) {
             (currenInput.previousElementSibling as HTMLInputElement)?.focus(); 
+            if((currenInput.previousElementSibling as HTMLInputElement).value){
+                (currenInput.previousElementSibling as HTMLInputElement)?.select()
+            }
           }      
     }
 

@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserModule } from './user/user.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/services/authInterceptor.service';
-import { SharedModule } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,

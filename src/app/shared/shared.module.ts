@@ -6,11 +6,11 @@ import {MatIconModule} from '@angular/material/icon';
 import { FormComponent } from "./components/forms/form.component";
 import { AddingMemberComponent } from "./components/forms/addingMember/addingMember.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
+import { RouterModule } from "@angular/router";
 
 @NgModule({
     declarations:[HeaderComponent,SidebarComponent,FormComponent,AddingMemberComponent],
-    imports:[CommonModule,MatIconModule,ReactiveFormsModule,FormsModule],
+    imports:[CommonModule,MatIconModule,ReactiveFormsModule,FormsModule,RouterModule],
     providers:[],
     exports:[HeaderComponent,SidebarComponent]
 

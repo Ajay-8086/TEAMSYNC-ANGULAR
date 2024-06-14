@@ -3,6 +3,7 @@ import { AuthService } from "../../services/auth.service";
 import { FormBuilder, Validators } from "@angular/forms";
 import { loginInterface } from "../../models/login.interface";
 import { Router } from "@angular/router";
+import { SocketService } from "src/app/shared/services/socket.service";
 
 @Component({
     selector:'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent{
     passwordVisibility(){
         this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
     }
-    constructor(private authService:AuthService,private fb:FormBuilder,private router:Router){}
+    constructor(private authService:AuthService,private fb:FormBuilder,private router:Router,private socketService:SocketService){}
        loginForm = this.fb.group({
         email:['',[Validators.required,Validators.email]],
         password:['',Validators.required]
@@ -23,9 +24,9 @@ export class LoginComponent{
     login(){
         const loginData = this.loginForm.value as loginInterface
         this.authService.login(loginData).subscribe(
-            (response)=>{
-                console.log(response,'response');
-                this.router.navigate(['/user/home'])
+            (response:any)=>{
+            //    const  token = response.token
+                    this.router.navigate(['/user/home'])
             },
             (error)=>{
                 console.log(error);
