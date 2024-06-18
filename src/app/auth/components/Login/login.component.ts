@@ -25,7 +25,8 @@ export class LoginComponent{
         const loginData = this.loginForm.value as loginInterface
         this.authService.login(loginData).subscribe(
             (response:any)=>{
-            //    const  token = response.token
+               const  token = response.token
+                     this.socketService.connect(token)
                     this.router.navigate(['/user/home'])
             },
             (error)=>{

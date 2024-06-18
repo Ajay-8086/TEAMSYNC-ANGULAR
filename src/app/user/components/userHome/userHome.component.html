@@ -4,7 +4,7 @@
     </div>
     <div class="flex flex-row h-max overflow-x-auto">
         <div class="sidebar-container"   [ngClass]="{'open': !isSidebarClicked, 'closed': isSidebarClicked}">
-            <app-sidebar (openingPopup)="dialogue($event)"></app-sidebar>
+            <app-sidebar (openingPopup)="dialogue($event)" [datas]="workspaces"></app-sidebar>
         </div>
         <div class="content-container   h-screen text-white">
             <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output, SimpleChanges } from "@angular/core";
 
 @Component({
     selector:'app-sidebar',
@@ -7,7 +7,17 @@ import { Component, EventEmitter, Output } from "@angular/core";
 })
 export class SidebarComponent{
     @Output() openingPopup= new EventEmitter<boolean>
+    @Input() datas :any
+    workspaces: any[] = [];
     openDialogue(){
         this.openingPopup.emit(true)
     }
-}
+    // checking any new changes in the input
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes["datas"] && changes["datas"].currentValue) {
+          this.workspaces = changes["datas"].currentValue;
+          console.log(this.workspaces,'hw');
+          
+        }
+      }
+    }

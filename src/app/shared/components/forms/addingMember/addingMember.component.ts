@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Member } from 'src/app/shared/model/member';
 import { workspaceFormData } from 'src/app/shared/model/workspaceForm.model';
-import { workspaceFormService } from 'src/app/shared/services/workspaceForm.service';
+import { workspaceFormService } from 'src/app/workspaces/services/workspaceForm.service';
 
 
 @Component({
@@ -36,8 +36,8 @@ export class AddingMemberComponent{
     }
   }
   // selected user the user 
-  selectUser(user:Member):void{
-    if(!this.selectedUser.includes(user)){
+  selectUser(user:Member):void{    
+    if(!this.selectedUser.some(selected=>selected._id===user._id)){
       this.selectedUser.push(user)
     }
     this.searchTerm = ''
@@ -47,5 +47,15 @@ export class AddingMemberComponent{
   removeUser(user:Member):void{
     this.selectedUser = this.selectedUser.filter(u=>u!=user)
   }
-
+  // inviting members to the wokspace
+  onSubmit(){
+    this.workspaceService.inviteMembers(this.selectedUser,this.id).subscribe(
+      (result)=>{
+        console.log(result);
+      },
+      (err)=>{
+        console.log(err);
+      }
+    )
+  }
 }

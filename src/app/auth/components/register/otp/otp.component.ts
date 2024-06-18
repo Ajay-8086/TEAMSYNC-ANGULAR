@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/services/auth.service";
@@ -10,6 +10,10 @@ import { emailSerivice } from "src/app/auth/services/userId.service";
     styleUrls:['./otp.component.css']
 })
 export class OtpComponent{
+    @ViewChild("otp1Ref") otp1Ref!: ElementRef
+    @ViewChild("otp2Ref") otp2Ref!: ElementRef
+    @ViewChild("otp3Ref") otp3Ref!: ElementRef
+    @ViewChild("otp4Ref") otp4Ref!: ElementRef
     // atuo focus change 
     autoInputChange(currenInput:HTMLInputElement,nextInput:HTMLInputElement|null):void{
         // auto focus change to next input
@@ -26,7 +30,26 @@ export class OtpComponent{
             }
           }      
     }
-
+    //selecting input on the backspacing
+    onKeyup(event:KeyboardEvent,index:number){
+        const target = event.target as HTMLInputElement
+        if(event.key==='Backspace' && index > 1 && !target.value ){
+            const preInput = (this as any)['otp' + (index - 1) + 'Ref'].nativeElement
+            if(preInput.value){
+                preInput.select()
+            }
+            preInput.focus()
+        }
+    }
+    // setting focus on the input
+    selectInput(event:any,index:number){
+        console.log(1);
+        
+        const preInput = (this as any )['otp'+(index) + 'Ref'].nativeElement
+        console.log(preInput);
+        
+        preInput.select()
+    }
     email:string=''
     constructor(private emailSerivice:emailSerivice,private fb:FormBuilder,private authService:AuthService,private router:Router){}
     ngOnInit(){ 

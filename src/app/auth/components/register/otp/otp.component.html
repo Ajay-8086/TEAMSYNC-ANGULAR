@@ -3,30 +3,38 @@
     <div class="mb-4">
       <div id="otp" class="flex space-x-2 mt-1 justify-center">
         <input type="text"
-         #otp1
-         (input)="autoInputChange(otp1,otp2)"
+         #otp1Ref
+         (input)="autoInputChange(otp1Ref,otp2Ref)"
+         (keyup)="onKeyup($event,1)"
+         (click)="selectInput($event,1)"
          formControlName="otp1"
          maxlength="1"
           class="w-10 h-10 sm:w-12 sm:h-12 text-center p-2 sm:p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-green-500" 
         >
         <input type="text" 
-        #otp2
-        (input)="autoInputChange(otp2,otp3)"
+        #otp2Ref
+        (input)="autoInputChange(otp2Ref,otp3Ref)"
+        (keyup)="onKeyup($event,2)"
+        (click)="selectInput($event,2)"
         formControlName="otp2"
         maxlength="1" 
         class="w-10 h-10 sm:w-12 sm:h-12 text-center p-2 sm:p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-green-500" 
         >
         <input type="text"
-        #otp3
-        (input)="autoInputChange(otp3,otp4)"
+        #otp3Ref
+        (input)="autoInputChange(otp3Ref,otp4Ref)"
+        (keyup)="onKeyup($event,3)"
+        (click)="selectInput($event,3)"
         formControlName="otp3"
          maxlength="1" 
          class="w-10 h-10 sm:w-12 sm:h-12 text-center p-2 sm:p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-green-500"
         >
         <input type="text"
          maxlength="1" 
-         #otp4
-        (input)="autoInputChange(otp4,null)"
+         #otp4Ref
+        (input)="autoInputChange(otp4Ref,null)"
+        (keyup)="onKeyup($event,4)"
+        (click)="selectInput($event,4)"
         formControlName="otp4"
          class="w-10 h-10 sm:w-12 sm:h-12 text-center p-2 sm:p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-green-500"
          >

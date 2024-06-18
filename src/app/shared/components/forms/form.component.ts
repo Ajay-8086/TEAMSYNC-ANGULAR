@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { workspaceFormService } from "../../services/workspaceForm.service";
+import { workspaceFormService } from "../../../workspaces/services/workspaceForm.service";
 import { workspaceFormData } from "../../model/workspaceForm.model";
 
 @Component({

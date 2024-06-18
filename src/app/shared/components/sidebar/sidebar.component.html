@@ -30,21 +30,12 @@
                 </button>
             </div>
             <ul class="space-y-6  list-none flex flex-col  w-[90%] mx-auto text-black  ">
-                <li >
-                    <a routerLink="/user/table" class="hover:text-customBlue flex gap-2 ">
+                <li *ngFor="let workspace of workspaces"  >
+                    <a routerLink="['/workspace', workspace._id]" class="hover:text-customBlue flex gap-2 ">
                         <mat-icon aria-hidden="false"  fontIcon="radio_button_checked" class="text-red-900 text-base" ></mat-icon>
-                       <span class="">WorkSpaces1</span>
+                       <span class="">{{workspace.workspaceName}}</span>
                     </a>
                 </li>
-                <li routerLink="/user/table" class="hover:text-customBlue flex gap-2">
-                         <mat-icon aria-hidden="false"  fontIcon="radio_button_checked" class="text-red-900 text-base" ></mat-icon>
-                        <span class="">WorkSpaces2</span>
-                </li>
-                <li routerLink="/user/table" class="hover:text-customBlue flex gap-2">
-                    <mat-icon aria-hidden="false"  fontIcon="radio_button_checked" class="text-red-900 text-base" ></mat-icon>
-                   <span class="">WorkSpaces3</span>
-                </li>
-               
             </ul>
         </div>
 
