@@ -1,0 +1,58 @@
+
+<div class="bg-white p-8 rounded-lg shadow-lg w-[400px] max-w-md">
+        <h2 class="text-center font-medium text-xl mb-4">Create Board</h2>
+     <form (ngSubmit)="onSubmit()" [formGroup]="boardForm">
+      <!-- Top Section with Image -->
+      <div class="mb-4">
+        <div class="bg-gray-300 h-40 rounded-lg flex items-center justify-center bg-cover bg-center" [ngStyle]="{'background-image':' url(' + selectedBackground + ')'}">
+          <img src="../../../../assets/background/14cda5dc635d1f13bc48.svg" class="w-60" alt="">
+        </div>
+      </div>
+      
+      <!-- Background Selection -->
+      <div class="mb-5">
+        <div class="grid grid-cols-5 gap-2">
+            <div
+            *ngFor="let bg of backgrounds"
+            class="relative w-full h-10 rounded-lg bg-cover bg-center cursor-pointer"
+            [ngStyle]="{'background-image': 'url(' + bg + ')'}"
+            (click)="changeBackground(bg)"
+            >
+            <div *ngIf="selectedBackground === bg" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <i class="fa-solid fa-check text-white"></i>
+            </div>
+        </div>
+      </div>
+      
+      <!-- Board Title Input -->
+      <div class="mb-4 mt-4">
+        <label for="board-title" class="block text-base font-medium text-gray-700">Board title <span class="text-red-500">*</span></label>
+        <input type="text" formControlName="boardName"  class=" w-full px-2 py-1 border rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
+      </div>
+      
+      <!-- Workspace and Visibility Dropdowns -->
+      <div class="mb-4">
+        <label for="workspace" class="block text-sm font-medium text-gray-700">Workspace</label>
+        <select id="workspace" formControlName="workspace" class="mt-1  w-full px-2 py-2 rounded-md border-gray-300 shadow-sm text-black focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm max-h-[100px] overflow-y-auto">
+          <option *ngFor="let workspace of workspaces" value="workspace._id">
+            {{workspace.workspaceName}}
+          </option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="visibility" class="block text-sm font-medium text-gray-700">Visibility</label>
+        <select id="visibility" formControlName="visibility" data-twe-select-init data-twe-select-option-height="52" class="mt-1 py-2 text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            <option value="1" data-twe-select-secondary-text="Secondary text">
+                Private
+            </option>
+          <option>Workspace</option>
+        </select>
+      </div>
+      
+      <!-- Create and Template Buttons -->
+      <div class="mb-4">
+        <button class="w-full py-2 px-4 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-300" disabled>Create</button>
+      </div>
+    </div>
+  </form>
+</div>

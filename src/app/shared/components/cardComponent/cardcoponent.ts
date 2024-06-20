@@ -6,5 +6,5 @@ import { Component, Input } from "@angular/core";
 })
 export class CardComponent{
     @Input() title!: string;
-    @Input() content!: string;
+    @Input() content!: string |undefined;
 }

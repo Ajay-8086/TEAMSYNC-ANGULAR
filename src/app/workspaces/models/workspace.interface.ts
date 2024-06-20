@@ -3,6 +3,6 @@ export interface Workspace{
     workspaceName:string,
     workspaceType:string,
     description?:string,
-    members?:string[]
+    members?:string[] 
     createdBy:string
 }

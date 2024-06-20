@@ -33,4 +33,9 @@ export class workspaceFormService{
         const url = `${this.api}/invite`
         return this.http.post(url,{membersList,workspaceId})
     }
+    //getting single workspace details
+    getWorkspaceById(workspaceId:string):Observable<any>{
+        const url = `${this.api}/user/workspaces/${workspaceId}`
+        return this.http.get<any>(url)
+    }
 }

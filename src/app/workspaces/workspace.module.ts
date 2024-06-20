@@ -4,6 +4,8 @@ import { WorkspacesComponent } from './components/workspaces/workspaces.componen
 import { SharedModule } from '../shared/shared.module';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     SharedModule,
     MatIconModule,
+    RouterModule,
+    FormsModule
   ],
   providers: []
 })

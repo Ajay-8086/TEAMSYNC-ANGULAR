@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { workspaceFormService } from '../../services/workspaceForm.service';
+import { Workspace } from '../../models/workspace.interface';
 
 @Component({
     selector:'app-workspaces',
@@ -8,13 +9,13 @@ import { workspaceFormService } from '../../services/workspaceForm.service';
 export class WorkspacesComponent{
     constructor(private workspaceService:workspaceFormService){}
  // workspace variable
- workspaces!:any
+ workspaces!:Workspace []
  ngOnInit(){
      // getting all the workspaces
      this.workspaceService.worksapceDetails().subscribe(
          (result)=>{
              console.log(result);
-             this.workspaces= result 
+             this.workspaces= result as Workspace[]
              console.log(this.workspaces,'hi');
              
          },

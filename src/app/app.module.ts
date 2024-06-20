@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/services/authInterceptor.service';
 import { WorkspaceModule } from './workspaces/workspace.module';
+import { BoardsModule } from './boards/boards.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { WorkspaceModule } from './workspaces/workspace.module';
     AuthModule,
     BrowserAnimationsModule,
     UserModule,
-    WorkspaceModule
+    WorkspaceModule,
+    BoardsModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]
