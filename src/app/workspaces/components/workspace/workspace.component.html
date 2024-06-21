@@ -4,15 +4,15 @@
         <div>
             <!-- Breadcrumbs -->
             <nav class="text-gray-500 text-sm mb-2">
-                <span>Workspace</span> / <span>{{workspaceDetails?.workspaceName}}</span> / <span>Board</span>
+                <span>Workspace</span> / <span>{{workspace?.workspaceName}}</span> / <span>Board</span>
             </nav>
             <!-- Title -->
-            <h1 class="text-3xl font-bold text-gray-900">{{workspaceDetails?.workspaceName}}</h1>
+            <h1 class="text-3xl font-bold text-gray-900">{{workspace?.workspaceName}}</h1>
             <!-- User Avatars and Filter Button -->
             <div class="flex items-center mt-4">
                 <!-- Avatars -->
                 <div class="flex -space-x-2">
-                    <ng-container *ngFor="let user of  workspaceDetails?.members ; let i = index">
+                    <ng-container *ngFor="let user of  workspace?.members ; let i = index">
                         <img class="w-8 h-8 rounded-full border-2 border-white" src="" alt="User 1" *ngIf="i<3">
                     </ng-container>
                     <div *ngIf="members.length > 4" class="w-8 h-8 rounded-full border-2 border-white bg-gray-400 flex items-center justify-center text-sm font-medium text-white">
@@ -38,7 +38,7 @@
             
             <div>
                 <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
-                <input type="text" id="search" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Search boards">
+            <input type="text" [(ngModel)]="searchTerm"  id="search" class="mt-1 block w-full text-black py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Search boards">
             </div>
         </div>
     
@@ -47,8 +47,10 @@
             <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-center text-gray-500 cursor-pointer" (click)="openDialogue()">
                 Create new board
             </div>
-            <div class="relative bg-gradient-to-r from-purple-500 to-indigo-500 p-6 rounded-lg shadow-md text-white flex justify-between items-center">
-                <span>ENLIFE</span>
+            <div
+            [ngStyle]="getBgstyle(board.background)"
+             class="relative  p-6 rounded-lg shadow-md text-gray-500 flex justify-between items-center" *ngFor="let board of filterdBoards()">
+                <span>{{board.boardName}}</span>
                 <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                 </svg>

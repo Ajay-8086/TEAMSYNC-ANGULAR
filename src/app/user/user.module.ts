@@ -7,7 +7,6 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { AuthGaurd } from "../auth/services/authGaurd.service";
 import { WorkspacesComponent } from "../workspaces/components/workspaces/workspaces.component";
 import { WorkspaceComponent } from "../workspaces/components/workspace/workspace.component";
-import { BoardFormComponent } from "../boards/components/boardForm/boardForm.component";
 
 
 const routes:Routes=[
