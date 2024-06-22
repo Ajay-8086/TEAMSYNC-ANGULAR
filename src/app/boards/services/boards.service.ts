@@ -16,4 +16,9 @@ export class BoardService{
         const url = `${this.api}/boards_create`
         return this.http.post<BoardForm>(url,formData)
     }
+    // making the boards in stared
+    stared(boardId:string,isStared:boolean):Observable<string>{
+        const url =  `${this.api}/boards/ad_to_star`
+        return this.http.patch<string>(url,{boardId,isStared})
+    }
 }

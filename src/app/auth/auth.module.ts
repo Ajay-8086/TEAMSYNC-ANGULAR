@@ -9,14 +9,15 @@ import { ResetPasswordComponent } from "./components/resetPassword/reset-passwor
 import { OtpComponent } from "./components/register/otp/otp.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { AuthGaurd } from "./services/authGaurd.service";
 
 
 
 const routes:Routes = [
-    {path:'',component:AuthComponent,
+    {path:'',component:AuthComponent,canActivate:[AuthGaurd],
     children:[
     {path:'register',component:RegisterComponent},
-    {path:'login',component:LoginComponent},
+    {path:'login',component:LoginComponent },
     {path:'forgot_password',component:ForgotPasswordComponent},
     {path:'reset_password',component:ResetPasswordComponent},
     {path:'verify_otp',component:OtpComponent}

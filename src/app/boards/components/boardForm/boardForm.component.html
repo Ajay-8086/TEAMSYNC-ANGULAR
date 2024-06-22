@@ -1,5 +1,5 @@
 
-<button class="absolute top-2 right-2 text-gray-500 border-none " (click)="dialoguClose()">
+<button class="absolute top-2 right-2 text-gray-500 border-none outline-none" (click)="dialoguClose()">
   <i class="fa-solid fa-xmark text-xl"></i>
 </button>
 <div class="bg-white p-8 rounded-lg shadow-lg w-[400px] max-w-md">
@@ -54,15 +54,15 @@
       <!-- Workspace and Visibility Dropdowns -->
       <div class="mb-4">
         <label for="workspace" class="block text-sm font-medium text-gray-700">Workspace</label>
-        <select id="workspace" formControlName="workspace" class="mt-1  w-full px-2 py-2 rounded-md border-gray-300 shadow-sm text-black focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm max-h-[100px] overflow-y-auto">
-          <option *ngFor="let workspace of workspaces" value="workspace._id">
-            {{workspace.workspaceName}}
+        <select id="workspace" formControlName="workspace" class="mt-1 bg-gray-50 border  w-full px-2 py-2 rounded-md border-gray-200 shadow-sm text-black focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm max-h-[100px] overflow-y-auto">
+          <option *ngFor="let workspace of workspaces" value={{workspace._id}}>
+            {{workspace.workspaceName }}
           </option>
         </select>
       </div>
       <div class="mb-4">
         <label for="visibility" class="block text-sm font-medium text-gray-700">Visibility</label>
-        <select id="visibility" formControlName="visibility"  class="mt-1 py-2 text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        <select id="visibility" formControlName="visibility"  class="mt-1 px-2 py-2 bg-gray-50 border border-gray-200 text-black block w-full rounded-md  shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             <option>
                 Private
             </option>

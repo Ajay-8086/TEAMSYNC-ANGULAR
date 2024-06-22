@@ -56,7 +56,6 @@ export class OtpComponent{
         this.startCountDown()
        this.emailSerivice.email$.subscribe((email)=>{
         this.email = email
-        console.log(this.email);
         
        })
     }

@@ -15,9 +15,7 @@ export class SidebarComponent{
     // checking any new changes in the input
     ngOnChanges(changes: SimpleChanges) {
         if (changes["datas"] && changes["datas"].currentValue) {
-          this.workspaces = changes["datas"].currentValue;
-          console.log(this.workspaces,'hw');
-          
+          this.workspaces = changes["datas"].currentValue;          
         }
       }
     }

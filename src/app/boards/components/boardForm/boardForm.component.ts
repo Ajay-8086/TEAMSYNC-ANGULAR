@@ -1,14 +1,15 @@
-import { Component } from "@angular/core";
+import { Component, Inject, inject } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Workspace } from "src/app/workspaces/models/workspace.interface";
 import { workspaceFormService } from "src/app/workspaces/services/workspaceForm.service";
 import { BoardService } from "../../services/boards.service";
 import { BoardForm } from "../../models/board.interface";
-import { MatDialog } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector:'app-boardForm',
-    templateUrl:'./boardForm.component.html'
+    templateUrl:'./boardForm.component.html',
 })
 export class BoardFormComponent{
     // background images 
@@ -36,27 +37,34 @@ export class BoardFormComponent{
         this.selectedBackgroundImage = null
         this.boardForm.patchValue({background:color})
     }
+    // workspace id getting from the component
+    workspaceId:string=''
 
+    constructor(
+        private workspaceService:workspaceFormService,
+        private dialogurRef:MatDialog,
+        private fb:FormBuilder, 
+        private boardService:BoardService,
+        @Inject(MAT_DIALOG_DATA) public data: any 
+    ){ this.workspaceId = data.workspaceId} // taking the workspace id from the workspace matdialogue
 
-    constructor(private workspaceService:workspaceFormService,private dialogurRef:MatDialog, private fb:FormBuilder, private boardService:BoardService){}
     workspaces!:Workspace[]
     // creating board form
     boardForm = this.fb.group({
         boardName:['',Validators.required],
-        workspace:[this.selectedWorkspaceId],
+        workspace:[''],
         visbility:['private'],
         background:[this.selectedBackgroundColor]
     })
     ngOnInit(){
+        console.log(this.workspaceId,'workspace');
+        
         this.workspaceService.worksapceDetails().subscribe(
             (result)=>{
                 this.workspaces = result as Workspace[];
-                console.log(result);
                  // Set the default workspace option in the form 
-                 if (this.workspaces.length > 0) {
-                    console.log(this.workspaces[0]._id);
-                    
-                 this.boardForm.patchValue({ workspace: this.workspaces[0]._id });
+                 if (this.workspaces.length > 0) {                    
+                 this.boardForm.patchValue({ workspace: this.workspaceId});
           }
             },
             (error)=>{  

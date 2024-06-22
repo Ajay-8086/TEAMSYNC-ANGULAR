@@ -5,6 +5,7 @@ import { Workspace } from "../../models/workspace.interface";
 import { MatDialog } from "@angular/material/dialog";
 import { BoardFormComponent } from "src/app/boards/components/boardForm/boardForm.component";
 import { BoardForm } from "src/app/boards/models/board.interface";
+import { BoardService } from "src/app/boards/services/boards.service";
 
 
 @Component({
@@ -12,7 +13,12 @@ import { BoardForm } from "src/app/boards/models/board.interface";
     templateUrl:'./workspace.component.html'
 })
 export class WorkspaceComponent{
-    constructor(private route:ActivatedRoute,private workspaceService:workspaceFormService , private dialogueRef:MatDialog){}
+    constructor(
+        private route:ActivatedRoute,
+        private workspaceService:workspaceFormService ,
+        private dialogueRef:MatDialog,
+        private boardService:BoardService
+    ){}
     workspaceId!:string | null
     workspace:Workspace | null =null
     members!:string[]
@@ -43,7 +49,7 @@ export class WorkspaceComponent{
     }
     //opening the popup for adding the boards
     openDialogue(){
-        this.dialogueRef.open(BoardFormComponent)
+        this.dialogueRef.open(BoardFormComponent,{data:{workspaceId:this.workspaceId}})
     }
 
     // changing the background style of the boards
@@ -67,4 +73,22 @@ export class WorkspaceComponent{
         }
         return this.boards.filter(board => board.boardName.toLowerCase().includes( this.searchTerm.toLowerCase() ))
     }
+   
+    // Changing  the board to stared or not
+    changeStar(boardId:string){
+        const board = this.boards.find(b => b._id == boardId)
+        if(board){
+            board.stared = !board.stared
+            this.boardService.stared(boardId,board.stared).subscribe(
+                (response)=>{
+                    console.log(response);
+                },
+                (err)=>{
+                    console.log(err);
+                    
+                }
+            )
+        }
+    }
+
 }
