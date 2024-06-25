@@ -1,0 +1,9 @@
+/* card.component.css */
+#contentPreview {
+    overflow: hidden;
+    height: 4.5rem; /* Adjust based on your requirements */
+}
+
+.hidden {
+    display: none;
+}

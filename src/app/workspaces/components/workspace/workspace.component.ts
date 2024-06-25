@@ -6,6 +6,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { BoardFormComponent } from "src/app/boards/components/boardForm/boardForm.component";
 import { BoardForm } from "src/app/boards/models/board.interface";
 import { BoardService } from "src/app/boards/services/boards.service";
+import { environment } from "src/environments/environment";
+import { DeleteComponent } from "src/app/shared/components/deleteComponent/delete.componet";
 
 
 @Component({
@@ -55,9 +57,9 @@ export class WorkspaceComponent{
     // changing the background style of the boards
     getBgstyle(background:any):{[key:string]:string}{
         if(this.isColor(background)){
-            return {'background-color':background}
+            return {'background-color':background , 'color':'grey'}
         }else{
-            return {'background-image':`url(${background})`,'background-size':'cover','background-position':'cover'}
+            return {'background-image':`url(${background})`,'background-size':'cover','background-position':'cover','color':'white'}
         }
     }
     // checking is it color or not
@@ -89,6 +91,16 @@ export class WorkspaceComponent{
                 }
             )
         }
+    }
+
+    // deleting workspace
+    navigateUrl:string = ''
+    deleteWorkspace(workspaceId:string | undefined){
+        const api  = environment.url
+        // route of deletion 
+        this.navigateUrl = `${api}/user/workspace_delete/${workspaceId}`
+        // passing data to the modal 
+        this.dialogueRef.open(DeleteComponent,{data:{navigate:this.navigateUrl,deletionData:'Workspace',workspaceId:workspaceId}})
     }
 
 }

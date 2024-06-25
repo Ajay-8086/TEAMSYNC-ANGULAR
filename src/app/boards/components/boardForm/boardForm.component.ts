@@ -5,7 +5,6 @@ import { workspaceFormService } from "src/app/workspaces/services/workspaceForm.
 import { BoardService } from "../../services/boards.service";
 import { BoardForm } from "../../models/board.interface";
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector:'app-boardForm',

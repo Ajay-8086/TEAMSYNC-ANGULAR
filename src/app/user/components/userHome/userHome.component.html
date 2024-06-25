@@ -6,7 +6,7 @@
         <div class="sidebar-container"   [ngClass]="{'open': !isSidebarClicked, 'closed': isSidebarClicked}">
             <app-sidebar (openingPopup)="dialogue($event)" [datas]="workspaces"></app-sidebar>
         </div>
-        <div class="content-container   h-screen text-white">
+        <div class="content-container flex-grow h-full">
             <router-outlet></router-outlet>
         </div>
     </div>

@@ -7,7 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormComponent } from './components/forms/form.component';
 import { AddingMemberComponent } from './components/forms/addingMember/addingMember.component';
-import { CardComponent } from './components/cardComponent/cardcoponent';
+import { CardComponent } from './components/cardComponent/card.component';
+import { DeleteComponent } from './components/deleteComponent/delete.componet';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CardComponent } from './components/cardComponent/cardcoponent';
     SidebarComponent,
     FormComponent,
     AddingMemberComponent,
-    CardComponent
+    CardComponent,
+    DeleteComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { CardComponent } from './components/cardComponent/cardcoponent';
   exports: [
     HeaderComponent,
     SidebarComponent,
-    CardComponent
+    CardComponent,
+    DeleteComponent
   ]
 })
 export class SharedModule {}

@@ -26,34 +26,43 @@
             <button class="bg-white border border-gray-300 px-2  rounded-md shadow-sm">
                 <i class="fa-regular fa-star text-gray-400"></i>
             </button>
+            <button class="bg-white border border-gray-300 px-2  rounded-md shadow-sm"(click)="deleteWorkspace(workspace?._id)" >
+                <i class="fa-solid fa-trash text-gray-400"></i>
+            </button>
             <button class=" border border-gray-300 p-2 rounded-md shadow-sm text-white bg-customBlue">
-               <span class="md:inline hidden">InviteMembers </span>  <span> <i class="fa-solid fa-plus"></i></span>
+                <span class="md:inline hidden">InviteMembers </span>  <span> <i class="fa-solid fa-plus"></i></span>
             </button>
             
         </div>
     </div>
-    <div>
+    <div class="bg-white p-6 border-b mb-4 flex justify-center items-center flex-col"*ngIf="!boards; else boardContainer" >
+        <div class="flex flex-col space-y-4 w-10/12 md:w-1/2 justify-center items-center ">
+            <img src="../../../../assets/images/noBoard.svg" width="411" alt="">
+            <p class="text-gray-400 text-center">Boards are where work gets done in TeamSync. On a board, you can move cards between lists to keep projects, tasks, and more on track.</p>
+            <button class=" border border-gray-300 px-4 py-1 rounded-md shadow-sm text-white bg-customBlue" (click)="openDialogue()">Create your firstBoard</button>
+        </div>
+    </div>
+    <ng-template #boardContainer>
         <h2 class="text-2xl font-bold mb-4">Boards</h2>
         <div class="flex flex-wrap justify-between mb-4">
             <div>
                 <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
             <input type="text" [(ngModel)]="searchTerm"  id="search" class="mt-1 block w-full text-black py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Search boards">
-            </div>
         </div>
-    
+    </div>
         <!-- Board Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4  m-2">
             <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-center text-gray-500 cursor-pointer" (click)="openDialogue()">
                 Create new board
             </div>
             <div
             [ngStyle]="getBgstyle(board.background)"
-             class="relative  p-6 rounded-lg shadow-md text-gray-500 flex justify-between items-center" *ngFor="let board of filterdBoards()">
+             class="relative  p-6 rounded-lg shadow-md  flex justify-between items-center" *ngFor="let board of filterdBoards()">
                 <span>{{board.boardName}}</span>
                 <svg class="w-6 h-6 text-gray-500"  fill="currentColor" viewBox="0 0 24 24"  [ngClass]="{ 'text-yellow-500': board.stared}" (click)="changeStar(board._id)">
                     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                 </svg>
             </div>
         </div>
-    </div>
+    </ng-template>
 </div>

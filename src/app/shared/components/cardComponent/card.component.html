@@ -1,16 +1,14 @@
-<div class="bg-gradient-to-b from-[#3c1053]  to-[#ad5389] text-white p-4 rounded-lg shadow-md flex justify-between items-center">
-    <div>
-        <h2 class="text-xl font-semibold mb-2 ">{{title}}</h2>
-        <p class="">{{content}}</p>
+<!-- card.component.html -->
+<div class="p-4  rounded-lg shadow-md border outline outline-gray-50" [ngClass]="{'h-[8rem]': !isExpanded, 'h-auto': isExpanded}">
+    <div class="text-wrap h-[70%]  overflow-hidden relative" [ngClass]="{'hidden': isExpanded}" #contentPreview>
+        <h2 class="text-xl font-medium mb-2 text-black">{{title}}</h2>
+        <p class="text-gray-400">{{content}}</p>
     </div>
-    <div class="ml-4 mt-9">
-        <button  class="focus:outline-none">
-            <mat-icon  class="text-yellow-500">star</mat-icon>
-            <ng-template >
-                <mat-icon class="text-gray-400">star_border</mat-icon>
-            </ng-template>
-        </button>
+    <div class="hidden" [ngClass]="{'hidden': !isExpanded}" #contentFull>
+        <h2 class="text-xl font-medium mb-2 text-black">{{title}}</h2>
+        <p class="text-gray-400">{{content}}</p>
     </div>
+    <p *ngIf="isOverflow" (click)="toggleContent($event)" class="text-blue-500 mt-2 inline-block">
+        {{ isExpanded ? 'Less' : 'More' }}
+    </p>
 </div>
-
-    

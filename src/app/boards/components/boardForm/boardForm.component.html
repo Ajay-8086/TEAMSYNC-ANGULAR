@@ -7,7 +7,7 @@
      <form (ngSubmit)="onSubmit()" [formGroup]="boardForm">
       <!-- Top Section with Image -->
       <div class="mb-4">
-        <div class="bg-gray-300 h-40 rounded-lg flex items-center justify-center bg-cover bg-center" [ngStyle]="{'background-image': selectedBackgroundImage ? 'url(' + selectedBackgroundImage + ')' : '', 'background-color': selectedBackgroundColor}">
+        <div class="bg-gray-300 h-40 border rounded-lg flex items-center justify-center bg-cover bg-center" [ngStyle]="{'background-image': selectedBackgroundImage ? 'url(' + selectedBackgroundImage + ')' : '', 'background-color': selectedBackgroundColor}">
           <img src="../../../../assets/background/14cda5dc635d1f13bc48.svg" class="w-60" alt="">
         </div>
       </div>

@@ -1,8 +1,10 @@
 import { Component } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialogRef } from "@angular/material/dialog";
 import { workspaceFormService } from "../../../workspaces/services/workspaceForm.service";
 import { workspaceFormData } from "../../model/workspaceForm.model";
+import { Workspace } from "src/app/workspaces/models/workspace.interface";
+import { SendWorkspace } from "../../services/workspace.service";
 
 @Component({
     selector:'app-forms',
@@ -11,10 +13,10 @@ import { workspaceFormData } from "../../model/workspaceForm.model";
     
 })
 export class FormComponent{
-    constructor(private dialogurRef:MatDialog,private fb:FormBuilder,private workspaceService:workspaceFormService){}
+    constructor(private dialogurRef:MatDialogRef<FormComponent>,private fb:FormBuilder,private workspaceService:workspaceFormService,private sendWorkspace:SendWorkspace){}
     // pop up closing method 
     dialoguClose(){
-        this.dialogurRef.closeAll()
+        this.dialogurRef.close()
 
     }
     // workspace form building 
@@ -30,16 +32,16 @@ export class FormComponent{
     // adding member component variable
     memberComponent:boolean=false
     //workspaceId
-    workspaceId:string =''
+    workspace!:Workspace
     // creating workspace form submission
     onSubmit(){
        this.workspaceData = this.workspaceForm.value as workspaceFormData
        // adding member component
        this.workspaceService.creatWorkSpace(this.workspaceData).subscribe(
            (response)=>{
-               console.log(response);
                this.msg =  response.message
-               this.workspaceId = response.workspaceId
+               this.workspace = response.newWorkspace
+                this.sendWorkspace.setWorkspace(response.allWorkspaces)
                this.memberComponent = true
             },
             (err)=>{

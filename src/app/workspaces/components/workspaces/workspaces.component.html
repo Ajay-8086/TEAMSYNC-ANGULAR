@@ -2,7 +2,10 @@
     <div class="flex flex-wrap mx-2">
         <!-- Card 1 -->
         <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-2" *ngFor="let workspace of workspaces">
-            <app-card [title]="workspace.workspaceName" [content]="workspace.description"></app-card>
+            <div [routerLink]="['/user/workspaces',workspace._id]" class="cursor-pointer">
+                <app-card [title]="workspace.workspaceName" [content]="workspace.description"></app-card>
+            </div>
+            
         </div>
         <!-- Card 2 -->
     </div>

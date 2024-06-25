@@ -12,7 +12,7 @@ import { emailSerivice } from "../../services/userId.service";
 })
 
 export class RegisterComponent{
-    constructor(private authService:AuthService,private fb:FormBuilder,private router:Router , private emailSerivice:emailSerivice){}
+    constructor(private authService:AuthService,private fb:FormBuilder,private router:Router ){}
     passwordFieldType:string = 'password'
     // function to hide and show password
     passwordVisibility(){

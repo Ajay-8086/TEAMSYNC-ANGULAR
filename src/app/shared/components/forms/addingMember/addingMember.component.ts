@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
+import {MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Member } from 'src/app/shared/model/member';
-import { workspaceFormData } from 'src/app/shared/model/workspaceForm.model';
+import { SendWorkspace } from 'src/app/shared/services/workspace.service';
+import { Workspace } from 'src/app/workspaces/models/workspace.interface';
 import { workspaceFormService } from 'src/app/workspaces/services/workspaceForm.service';
 
 
@@ -9,10 +12,15 @@ import { workspaceFormService } from 'src/app/workspaces/services/workspaceForm.
   templateUrl: './addingMember.component.html',
 })
 export class AddingMemberComponent{
-  constructor(private workspaceService:workspaceFormService){}
+  constructor(
+    private workspaceService:workspaceFormService ,
+    private router:Router,
+    private dialogRef:MatDialogRef<AddingMemberComponent>,
+    private sendWrorkspace:SendWorkspace
+  ){}
   searchTerm: string = '';
   // getting workspace id
-  @Input() id :string =''
+  @Input() workspace !:Workspace
   // members array variable
   searchResults: Member[] | any = [];
  //selected user
@@ -25,8 +33,6 @@ export class AddingMemberComponent{
       this.workspaceService.searchingMembers(this.searchTerm).subscribe(
         (result)=>{
           this.searchResults = result
-          console.log(this.searchResults);
-          
         },
       (err)=>{
         console.log(err);
@@ -49,7 +55,7 @@ export class AddingMemberComponent{
   }
   // inviting members to the wokspace
   onSubmit(){
-    this.workspaceService.inviteMembers(this.selectedUser,this.id).subscribe(
+    this.workspaceService.inviteMembers(this.selectedUser,this.workspace._id).subscribe(
       (result)=>{
         console.log(result);
       },
@@ -57,5 +63,11 @@ export class AddingMemberComponent{
         console.log(err);
       }
     )
+  }
+  // closing dialog and redirecting to home
+  closeDialogue(){
+    this.router.navigateByUrl('/user/home')
+
+    this.dialogRef.close()
   }
 }
