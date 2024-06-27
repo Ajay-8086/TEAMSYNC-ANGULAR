@@ -11,6 +11,7 @@ import { CardComponent } from './components/cardComponent/card.component';
 import { DeleteComponent } from './components/deleteComponent/delete.componet';
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -18,14 +19,14 @@ import { DeleteComponent } from './components/deleteComponent/delete.componet';
     FormComponent,
     AddingMemberComponent,
     CardComponent,
-    DeleteComponent
+    DeleteComponent,
   ],
   imports: [
     CommonModule,
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [],
   exports: [

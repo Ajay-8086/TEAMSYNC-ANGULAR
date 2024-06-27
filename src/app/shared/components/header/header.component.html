@@ -1,20 +1,28 @@
 <nav class="w-full h-16 border-b  overflow-x-hidden flex">
-  <div class=" md:border-r border-r-0 flex w-[208px]" [ngClass]="{'open':isSidebarOpen, 'close' : !isSidebarOpen}">
-    <a routerLink="/user/home" class="items-center w-[90%] ms-5 flex-1 flex-wrap md:inline-flex hidden ">
-        <i class="fa-brands fa-teamspeak   mr-2 text-center md:text-2xl text-xl"></i>
-        <span class="md:text-xl text-base  font-bold">TeamSync</span>
-    </a>
-    <button class="items-center ms-5 md:hidden inline-flex"  (click)="toggleSidebar()">
-      <i class="fa-solid fa-bars text-xl" *ngIf="isSidebarOpen else cross"></i>
-      <ng-template #cross >
-        <a routerLink="/user/home" class="flex-1 flex-wrap flex items-center w-[90%] ">
-            <i class="fa-brands fa-teamspeak  text-xl"></i>
-            <span class="text-base  font-bold">TeamSync</span>
+    <div *ngIf="!nosidebar;else sidebar" class="flex w-[208px] items-center">
+        <a routerLink="/user/home" class="items-center w-[90%] ms-5 flex-1 flex-wrap  ">
+            <i class="fa-brands fa-teamspeak   mr-2 text-center md:text-2xl text-xl"></i>
+            <span class="md:text-xl text-base  font-bold">TeamSync</span>
         </a>
-        <i class="fa-solid fa-xmark text-xl ps-4"></i>
-      </ng-template>
-    </button>
-  </div>
+    </div>
+   <ng-template #sidebar>
+    <div class=" md:border-r border-r-0 flex w-[208px]" [ngClass]="{'open':isSidebarOpen, 'close' : !isSidebarOpen}">
+        <a routerLink="/user/home" class="items-center w-[90%] ms-5 flex-1 flex-wrap md:inline-flex hidden ">
+            <i class="fa-brands fa-teamspeak   mr-2 text-center md:text-2xl text-xl"></i>
+            <span class="md:text-xl text-base  font-bold">TeamSync</span>
+        </a>
+        <button class="items-center ms-5 md:hidden inline-flex"  (click)="toggleSidebar()">
+          <i class="fa-solid fa-bars text-xl" *ngIf="isSidebarOpen else cross"></i>
+          <ng-template #cross >
+            <a routerLink="/user/home" class="flex-1 flex-wrap flex items-center w-[90%] ">
+                <i class="fa-brands fa-teamspeak  text-xl"></i>
+                <span class="text-base  font-bold">TeamSync</span>
+            </a>
+            <i class="fa-solid fa-xmark text-xl ps-4"></i>
+          </ng-template>
+        </button>
+        </div>
+   </ng-template>
     <div class="w-[80%] h-full mx-auto flex  justify-between items-center  overflow-x-hidden">
         <ul class="flex space-x-4 md:space-x-6  list-none  h-full items-center text-base md:tex-lg text-gray-400">
             <li routterLink="" class="space-x-2 hover:text-customBlue"  >
@@ -39,9 +47,10 @@
                 <i class="fa-regular fa-bell text-2xl"></i>
                 <span class="absolute top-0 right-0 inline-block w-2.5 h-2.5 bg-pink-500 rounded-full"></span>
             </a>
-            <button class="p-2 rounded-full bg-blue-800 text-white text-sm md:text-base ">
-                AT
+            <button class="py-[.3rem] px-[.5rem] rounded-[100%] bg-blue-800 text-white text-sm md:text-base" (click)="showProfile()">
+               {{icon}}
             </button>
-       </div>
+        </div>
     </div>
 </nav>
+

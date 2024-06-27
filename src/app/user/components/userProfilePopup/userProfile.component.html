@@ -1,0 +1,19 @@
+<div id="popupContainer " class="p-6 popup rounded-lg">
+    <div class="flex items-center mb-4">
+      <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-lg font-bold mr-4">{{icon}}</div>
+      <div>
+        <div class="text-lg font-semibold">{{userData.userName}}</div>
+        <div class="text-sm text-gray-500">{{userData.email}}</div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <button class=" hover:underline flex items-center justify-between w-full" (click)="manageAccount()">
+        Manage account 
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+    </div>
+    <hr class="mb-4">
+    <div>
+      <button class="block w-full text-left">Log out</button>
+    </div>
+  </div>
