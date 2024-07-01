@@ -9,8 +9,8 @@ import { FormComponent } from './components/forms/form.component';
 import { AddingMemberComponent } from './components/forms/addingMember/addingMember.component';
 import { CardComponent } from './components/cardComponent/card.component';
 import { DeleteComponent } from './components/deleteComponent/delete.componet';
-
-
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,9 @@ import { DeleteComponent } from './components/deleteComponent/delete.componet';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
+    MatListModule,
+    MatSidenavModule
+    
   ],
   providers: [],
   exports: [

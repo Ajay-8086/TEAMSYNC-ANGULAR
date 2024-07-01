@@ -1,13 +1,14 @@
-<div class="flex flex-col w-full h-screen">
-    <div class="w-full">
-        <app-header (menuClicked)="sidebarToggling($event)"></app-header>
-    </div>
-    <div class="flex flex-row h-max overflow-x-auto">
-        <div class="sidebar-container"   [ngClass]="{'open': !isSidebarClicked, 'closed': isSidebarClicked}">
-            <app-sidebar (openingPopup)="dialogue($event)" [datas]="workspaces"></app-sidebar>
-        </div>
-        <div class="content-container flex-grow h-full">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
+<mat-sidenav-container class="h-screen w-full">
+    <mat-sidenav [mode]="isScreenSmall ? 'over' : 'side'" [(opened)]="isSidebarOpen" class="sidebar-content" >
+      <app-sidebar [isSidebarOpen]="isSidebarOpen" [isScreenSmall]="isScreenSmall" [toggleSidebar]="toggleSidebar" [datas]="workspaces" (openingPopup)="dialoge($event)" [content]="'workspace'" ></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content class="bg-white">
+       <div class=" fixed  bg-white z-50 " [ngStyle]="{ 'width': isScreenSmall ? '100%' : 'calc(100% - 14rem)' }">
+        <app-header [isScreenSmall]="isScreenSmall" [toggleSidebar]="toggleSidebar"></app-header>
+       </div>
+       <div class="overflow-y-auto md:mt-16 mt-36  ms-2 ">
+        <router-outlet></router-outlet>
+       </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  

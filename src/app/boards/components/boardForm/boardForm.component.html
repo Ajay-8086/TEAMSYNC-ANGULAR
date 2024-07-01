@@ -56,7 +56,7 @@
         <label for="workspace" class="block text-sm font-medium text-gray-700">Workspace</label>
         <select id="workspace" formControlName="workspace" class="mt-1 bg-gray-50 border  w-full px-2 py-2 rounded-md border-gray-200 shadow-sm text-black focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm max-h-[100px] overflow-y-auto">
           <option *ngFor="let workspace of workspaces" value={{workspace._id}}>
-            {{workspace.workspaceName }}
+            {{workspace.name }}
           </option>
         </select>
       </div>

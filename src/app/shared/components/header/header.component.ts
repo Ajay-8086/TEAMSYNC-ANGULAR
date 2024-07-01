@@ -9,18 +9,13 @@ import { TokenDecodeService } from "src/app/user/services/tokenDecode.service";
     styleUrls:['./header.component.css']
 })
 export class HeaderComponent{
-    //no sidebar
-    @Input() nosidebar:boolean =true
-
-    // sidebar toggling
-    isSidebarOpen:boolean=false
-    // sidebar toggle event passing
-    @Output() menuClicked = new EventEmitter<boolean>()
-    toggleSidebar(){
-        this.isSidebarOpen=!this.isSidebarOpen
-        this.menuClicked.emit(this.isSidebarOpen)
-    }
+    // checking screen size 
+    @Input() isScreenSmall: boolean = false;
+    @Input() toggleSidebar!: () => void
+    // input from profile
+    @Input() profile !:boolean
     constructor(private dialogRef:MatDialog,private tokenService:TokenDecodeService){}
+    // profile popup showing function
     showProfile(){
         this.dialogRef.open(UserProfileComponent,{
             position: { top: '4rem', right: '1rem' },
@@ -31,9 +26,11 @@ export class HeaderComponent{
     //user icon
     icon:string=''
     ngOnInit(){
+        // getting token 
         const token = localStorage.getItem('token')
         if(token){
             const userData = this.tokenService.getPayload(token)
+            // setting user icon 
             this.icon = userData.userName.split('')[0].toUpperCase()
         }
     }

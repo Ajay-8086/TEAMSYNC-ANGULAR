@@ -73,7 +73,7 @@ export class WorkspaceComponent{
         if(!this.searchTerm){
             return this.boards
         }
-        return this.boards.filter(board => board.boardName.toLowerCase().includes( this.searchTerm.toLowerCase() ))
+        return this.boards.filter(board => board.name.toLowerCase().includes( this.searchTerm.toLowerCase() ))
     }
    
     // Changing  the board to stared or not

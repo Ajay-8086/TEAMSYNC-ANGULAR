@@ -4,10 +4,10 @@
         <div>
             <!-- Breadcrumbs -->
             <nav class="text-gray-500 text-sm mb-2">
-                <span>Workspace</span> / <span>{{workspace?.workspaceName}}</span>
+                <span>Workspace</span> / <span>{{workspace?.name}}</span>
             </nav>
             <!-- Title -->
-            <h1 class="text-3xl font-bold text-gray-900">{{workspace?.workspaceName}}</h1>
+            <h1 class="text-3xl font-bold text-gray-900">{{workspace?.name}}</h1>
             <!-- User Avatars and Filter Button -->
             <div class="flex items-center mt-4">
                 <!-- Avatars -->
@@ -58,7 +58,7 @@
             <div
             [ngStyle]="getBgstyle(board.background)"
              class="relative  p-6 rounded-lg shadow-md  flex justify-between items-center" *ngFor="let board of filterdBoards()">
-                <span>{{board.boardName}}</span>
+                <span>{{board.name}}</span>
                 <svg class="w-6 h-6 text-gray-500"  fill="currentColor" viewBox="0 0 24 24"  [ngClass]="{ 'text-yellow-500': board.stared}" (click)="changeStar(board._id)">
                     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                 </svg>

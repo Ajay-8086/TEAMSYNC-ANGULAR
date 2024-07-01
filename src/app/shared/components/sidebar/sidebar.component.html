@@ -1,43 +1,50 @@
-<div class="w-full   border-r flex flex-col flex-grow h-screen">
-    <div class="w-[90%] flex flex-col mx-auto flex-grow">
-        <div class="h-[10rem] flex w-full mx-auto border-b">
-            <ul class="space-y-6  list-none flex flex-col md:text-[1rem] tex-base h-[75%] self-center w-[90%] mx-auto text-gray-400 ">
-                <li >
-                    <a routerLink="/user/home" class="hover:text-customBlue flex gap-3 items-center " routerLinkActive="activeLink">
-                        <mat-icon aria-hidden="false"  fontIcon="home"></mat-icon>
-                        <span class="">Home</span>
-                    </a>
-                </li>
-                <li  >
-                    <a routerLink="/user/recent" class="hover:text-customBlue flex gap-3 items-center" routerLinkActive="activeLink">
-                        <mat-icon aria-hidden="false"  fontIcon="history" ></mat-icon>
-                        <span class="">Recent</span>
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/user/stared" class="hover:text-customBlue flex gap-3 items-center" routerLinkActive="activeLink">
-                        <mat-icon aria-hidden="false"  fontIcon="stars" ></mat-icon>
-                        <span class="">Stared</span>
-                    </a>  
-                </li>
-            </ul>
-        </div>
-        <div class="flex-grow flex-col w-full mx-auto mt-4 " >
-            <div class=" mx-auto w-[90%] flex items-center h-12 justify-between  text-gray-400">
-                <h3 class="font-bold">WorkSpaces</h3>
-                <button (click)="openDialogue()" class="mt-3">
-                    <i class="fa-regular fa-square-plus text-lg pb-2"></i>
-                </button>
-            </div>
-            <ul class="space-y-6  list-none flex flex-col  w-[90%] mx-auto text-black  ">
-                <li *ngFor="let workspace of workspaces"  >
-                    <a [routerLink]="['/user/workspaces',workspace._id]" class="hover:text-customBlue flex gap-2" routerLinkActive="activeLink">
-                        <mat-icon aria-hidden="false"  fontIcon="radio_button_checked" class="text-red-900 text-base" ></mat-icon>
-                       <span class="">{{workspace.workspaceName}}</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
+<div class="w-[14rem] border-none sidebar-container ">
+    <div class="sidebar-header w-full ">
+      <div class="h-16 flex items-center justify-between w-full first-letter">
+        <a routerLink="/user/home" class="flex items-center">
+          <i class="fa-brands fa-teamspeak mr-2 text-2xl"></i>
+          <span class="text-xl font-bold">TeamSync</span>
+        </a>
+        <button mat-icon-button class="md:hidden outline-none flex" (click)="toggleSidebar()" aria-label="Close sidebar">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <ul class="flex flex-col gap-4 items-start pb-4 text-gray-400">
+      <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center" routerLink="/user/home" routerLinkActive="activeLink">
+        <a class="hover:text-customBlue flex gap-3 items-center">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center" routerLink="/user/recent" routerLinkActive="activeLink">
+        <a class="hover:text-customBlue flex gap-2 items-center">
+          <mat-icon>history</mat-icon>
+          <span>Recent</span>
+        </a>
+      </li>
+      <li class="topli h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center" routerLink="/user/stared" routerLinkActive="activeLink">
+        <a class="hover:text-customBlue flex gap-3 items-center">
+          <mat-icon>stars</mat-icon>
+          <span>Stared</span>
+        </a>
+      </li>
+    </ul>
+    <div class="px-2"><hr></div>
+    <div class="py-2 text-gray-400">
+      <div class="flex w-[96%] justify-between items-center">
+        <h1 class="px-6 font-medium">{{content}}</h1>
+        <button class="mt-3 px-5" (click)="openDialogue()">
+          <i class="fa-regular fa-square-plus text-lg pb-2"></i>
+        </button>
+      </div>
+      <ul class="w-full flex flex-col items-start gap-4  text-center py-2 overflow-auto scrollable-list" *ngIf="content == 'workspace' else boardsUl">
+        <li class="h-10 hover:bg-gray-100 cursor-pointer py-2 rounded-lg w-full flex px-10 justify-start items-center" [routerLink]="['/user/workspaces', data._id]" routerLinkActive="activeLink" *ngFor="let data of workspaces">{{data.name}}</li>
+      </ul>
+      <ng-template #boardsUl>
+        <ul class="w-full flex flex-col items-start gap-2 text-center py-2 scrollable-list">
+          <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center" *ngFor="let data of boards">{{data.name}}</li>
+        </ul>
+      </ng-template>
+    </div>
   </div>
-</div>

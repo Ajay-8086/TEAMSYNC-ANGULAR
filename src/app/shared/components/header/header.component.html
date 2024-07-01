@@ -1,56 +1,45 @@
-<nav class="w-full h-16 border-b  overflow-x-hidden flex">
-    <div *ngIf="!nosidebar;else sidebar" class="flex w-[208px] items-center">
-        <a routerLink="/user/home" class="items-center w-[90%] ms-5 flex-1 flex-wrap  ">
-            <i class="fa-brands fa-teamspeak   mr-2 text-center md:text-2xl text-xl"></i>
-            <span class="md:text-xl text-base  font-bold">TeamSync</span>
-        </a>
+<div class="header w-full h-16 flex items-center justify-between px-4 border-b shadow-sm">
+    <div class="h-16 flex items-center justify-between w-40" *ngIf="profile">
+      <a routerLink="/user/home" class="flex items-center">
+        <i class="fa-brands fa-teamspeak mr-2 text-2xl"></i>
+        <span class="text-xl font-bold hidden md:block">TeamSync</span>
+      </a>
     </div>
-   <ng-template #sidebar>
-    <div class=" md:border-r border-r-0 flex w-[208px]" [ngClass]="{'open':isSidebarOpen, 'close' : !isSidebarOpen}">
-        <a routerLink="/user/home" class="items-center w-[90%] ms-5 flex-1 flex-wrap md:inline-flex hidden ">
-            <i class="fa-brands fa-teamspeak   mr-2 text-center md:text-2xl text-xl"></i>
-            <span class="md:text-xl text-base  font-bold">TeamSync</span>
-        </a>
-        <button class="items-center ms-5 md:hidden inline-flex"  (click)="toggleSidebar()">
-          <i class="fa-solid fa-bars text-xl" *ngIf="isSidebarOpen else cross"></i>
-          <ng-template #cross >
-            <a routerLink="/user/home" class="flex-1 flex-wrap flex items-center w-[90%] ">
-                <i class="fa-brands fa-teamspeak  text-xl"></i>
-                <span class="text-base  font-bold">TeamSync</span>
-            </a>
-            <i class="fa-solid fa-xmark text-xl ps-4"></i>
-          </ng-template>
+    <div class="flex items-center">
+      <button *ngIf="isScreenSmall" (click)="toggleSidebar()" aria-label="Open sidebar" class="flex">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <ul class="flex md:w-72 w-36 justify-between items-center text-gray-400">
+      <li routerLink="" class="space-x-2 hover:text-customBlue flex items-center h-16 hover:border-b-customBlue hover:border-b-4">
+        <i class="fa-solid fa-table"></i>
+        <span class="md:inline hidden">Table</span>
+      </li>
+      <li routerLink="" class="space-x-2 hover:text-customBlue flex items-center h-16 hover:border-b-customBlue hover:border-b-4">
+        <i class="fa-solid fa-chart-simple"></i>
+        <span class="md:inline hidden">Boards</span>
+      </li>
+      <li routerLink="" class="space-x-2 hover:text-customBlue flex items-center h-16 hover:border-b-customBlue hover:border-b-4">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span class="md:inline hidden">Calendar</span>
+      </li>
+    </ul>
+    <div class="hidden md:flex px-4 py-3 border border-gray-300 overflow-hidden max-w-md mx-auto font-[sans-serif] rounded-full transition-all duration-300 ease-in-out focus-within:max-w-lg w-full lg:w-1/2">
+      <input type="email" placeholder="Search Something..." class="w-full outline-none bg-transparent text-gray-600 text-sm" />
+      <mat-icon>search</mat-icon>
+    </div>
+    <div class="flex w-36 justify-around">
+      <div><i class="fa-regular fa-bell text-2xl"></i></div>
+      <div><i class="fa-regular fa-comment text-2xl"></i></div>
+      <div>  
+        <button class="py-[.3rem] px-[.5rem] rounded-[100%] bg-blue-800 text-white text-sm md:text-base" (click)="showProfile()">
+          {{icon}}
         </button>
-        </div>
-   </ng-template>
-    <div class="w-[80%] h-full mx-auto flex  justify-between items-center  overflow-x-hidden">
-        <ul class="flex space-x-4 md:space-x-6  list-none  h-full items-center text-base md:tex-lg text-gray-400">
-            <li routterLink="" class="space-x-2 hover:text-customBlue"  >
-                <i class="fa-solid fa-table"></i> 
-                <span class="md:inline hidden">Table</span>
-            </li>
-            <li routterLink="" class="space-x-2 hover:text-customBlue" >
-                <i class="fa-solid fa-chart-simple"></i>
-                <span class="md:inline hidden">Boards</span>
-            </li>
-            <li routterLink="" class="space-x-2 hover:text-customBlue" >
-                <i class="fa-solid fa-calendar-days"></i>
-                <span class="md:inline hidden">Calendar</span>
-            </li>
-        </ul>
-       <div class="flex items-center  gap-3 md:gap-6  justify-around">
-            <div class="relative">
-                <input type="text" placeholder="Search..." class="pl-10 pr-4 py-[.4rem] border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 md:inline hidden">
-                <svg class="w-5 h-5 text-gray-400 md:absolute static  top-2.5 left-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 3.5a7.5 7.5 0 0013.65 13.65z"></path></svg>
-            </div>
-            <a href="" class="relative">
-                <i class="fa-regular fa-bell text-2xl"></i>
-                <span class="absolute top-0 right-0 inline-block w-2.5 h-2.5 bg-pink-500 rounded-full"></span>
-            </a>
-            <button class="py-[.3rem] px-[.5rem] rounded-[100%] bg-blue-800 text-white text-sm md:text-base" (click)="showProfile()">
-               {{icon}}
-            </button>
-        </div>
+      </div>
     </div>
-</nav>
-
+  </div>
+  <div class="md:hidden px-4 flex py-3 border border-gray-300 overflow-hidden max-w-md mx-auto font-[sans-serif] rounded-full mt-4">
+    <input type="email" placeholder="Search Something..." class="w-full outline-none bg-transparent text-gray-600 text-sm" />
+    <mat-icon>search</mat-icon>
+  </div>
+  

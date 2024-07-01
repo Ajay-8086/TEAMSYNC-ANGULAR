@@ -10,7 +10,9 @@ import { WorkspaceComponent } from "../workspaces/components/workspace/workspace
 import { FormsModule } from "@angular/forms";
 import { UserProfileComponent } from "./components/userProfilePopup/userProfile.component";
 import { ProfileComponent } from "./components/profile/profile.component";
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatListModule } from "@angular/material/list";
 
 
 const routes:Routes=[
@@ -23,7 +25,8 @@ const routes:Routes=[
 ]
 @NgModule({
     declarations:[UserHomeComponent,UserProfileComponent,ProfileComponent],
-    imports:[CommonModule,SharedModule,RouterModule.forChild(routes),MatDialogModule,FormsModule],
+    imports:[CommonModule,SharedModule,RouterModule.forChild(routes),MatDialogModule,FormsModule,MatTooltipModule,  MatListModule,
+        MatSidenavModule],
     providers:[],
 })
 export class UserModule{

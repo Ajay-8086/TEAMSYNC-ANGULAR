@@ -1,27 +1,6 @@
-.sidebar-container {
-    position: fixed;
-    top: 4rem;
-    left: 0;
-    width: 13rem;
-    height: calc(100% - 4rem); /* Ensure the sidebar takes up the full height minus the header */
-    transition: left 0.3s ease-in-out;
-    background-color: white; /* Ensure the sidebar has a background color */
-    z-index: 1000; /* Ensure the sidebar appears above other content */
-}
+.sidebar-content{
+    background-color: white;
 
-.open {
-    left: 0;
-    width: 13rem;
-}
+  }
 
-.closed {
-    left: -100%;
-}
-.content-container {
-    flex-grow: 1;
-    margin-left: 13rem; 
-    transition: margin-left 0.3s ease-in-out;
-}
-.closed + .content-container {
-    margin-left: 0; 
-}
+  

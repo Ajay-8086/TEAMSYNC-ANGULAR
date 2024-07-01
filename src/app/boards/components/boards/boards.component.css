@@ -1,0 +1,24 @@
+  .sidebar-content {
+    width: 16rem;
+    background-color: white;
+    /* border: none; */
+    
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    
+  }
+  
+  .header {
+    background-color: white;
+    padding: 0 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: -555px;
+  }
+  
+  
+  

@@ -1,6 +1,6 @@
 export interface BoardForm{
 _id:string
-boardName:string,
+name:string,
 stared?:boolean,
 visibility?:string,
 workspace?:string,

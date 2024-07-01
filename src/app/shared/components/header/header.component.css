@@ -1,19 +1,4 @@
-.sidebar-container {
-    position: fixed;
-    top: 4rem;
-    left: -100%;
-    width: 20rem;
-    height: calc(100% - 4rem); /* Ensure the sidebar takes up the full height minus the header */
-    transition: left 0.3s ease-in-out;
-    background-color: white; /* Ensure the sidebar has a background color */
-    z-index: 1000; /* Ensure the sidebar appears above other content */
-}
-
-.sidebar-container.open {
-    left: 0;
-    width: 15rem;
-}
-
-.sidebar-container.closed {
-    left: -100%;
-}
+.header {
+    background-color: white;
+    padding: 0 16px;
+  }
