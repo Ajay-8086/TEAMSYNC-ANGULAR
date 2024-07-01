@@ -39,11 +39,11 @@
         </button>
       </div>
       <ul class="w-full flex flex-col items-start gap-4  text-center py-2 overflow-auto scrollable-list" *ngIf="content == 'workspace' else boardsUl">
-        <li class="h-10 hover:bg-gray-100 cursor-pointer py-2 rounded-lg w-full flex px-10 justify-start items-center" [routerLink]="['/user/workspaces', data._id]" routerLinkActive="activeLink" *ngFor="let data of workspaces">{{data.name}}</li>
+        <li class="h-10 hover:bg-gray-100 text-black cursor-pointer py-2 rounded-lg w-full flex px-10 justify-start items-center" [routerLink]="['/user/workspaces', data._id]" routerLinkActive="activeLink" *ngFor="let data of workspaces">{{data.name}}</li>
       </ul>
       <ng-template #boardsUl>
         <ul class="w-full flex flex-col items-start gap-2 text-center py-2 scrollable-list">
-          <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center" *ngFor="let data of boards">{{data.name}}</li>
+          <li class="h-10 hover:bg-gray-100 text-black cursor-pointer rounded-lg w-full flex px-8 justify-start items-center" *ngFor="let data of boards">{{data.name}}</li>
         </ul>
       </ng-template>
     </div>

@@ -13,7 +13,7 @@ export class AuthGaurd{
         if(token){
             return true
         }else{
-            this.router.navigate(['/auth/login'])
+            this.router.navigate(['auth/login'])
             return false
         }
     }

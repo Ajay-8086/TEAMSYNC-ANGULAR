@@ -14,7 +14,7 @@ import { AuthGaurd } from "./services/authGaurd.service";
 
 
 const routes:Routes = [
-    {path:'',component:AuthComponent,canActivate:[AuthGaurd],
+    {path:'',component:AuthComponent,
     children:[
     {path:'register',component:RegisterComponent},
     {path:'login',component:LoginComponent },

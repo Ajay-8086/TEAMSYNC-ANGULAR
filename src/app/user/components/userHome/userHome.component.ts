@@ -32,13 +32,10 @@ export class UserHomeComponent{
           // getting all the workspaces
           this.workspaceService.worksapceDetails().subscribe(
             (result)=>{
-                this.workspaces= result  as Workspace       
-                console.log(this.workspaces);
-                         
+                this.workspaces= result  as Workspace             
             },
             (error)=>{
                 console.log(error);
-                   
             }
         )
     }
@@ -52,5 +49,4 @@ export class UserHomeComponent{
         if(event)
         this.dialogueRef.open(FormComponent)
     }   
-
 }

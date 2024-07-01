@@ -29,4 +29,10 @@ export class UserProfileComponent{
         this.dialog.closeAll()
         this.router.navigateByUrl(`/profile/${this.userId}`)
     }
+    // loging out the user 
+    logout(){
+        localStorage.removeItem('token')
+        this.dialog.closeAll()
+        this.router.navigateByUrl('')
+    }
 }
