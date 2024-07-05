@@ -1,82 +1,80 @@
-<mat-sidenav-container class="h-screen">
-    <mat-sidenav #sidenav mode="side" [(opened)]="isSidebarOpen" class="sidebar-content" [mode]="isScreenSmall ? 'over' : 'side'" [fixedInViewport]="isScreenSmall ? true : false">
-      <div class="sidebar-header">
-        <div class="h-16 flex items-center justify-start w-full ">
-          <a routerLink="/user/home" class="flex items-center">
-            <i class="fa-brands fa-teamspeak mr-2 text-2xl"></i>
-            <span class="text-xl font-bold">TeamSync</span>
-          </a>
-          <button mat-icon-button class="md:hidden outline-none flex" (click)="toggleSidebar()" aria-label="Close sidebar">
-            <mat-icon class="ml-20">close</mat-icon>
-          </button>
+<div class="board p-6 mb-4">
+  <div class="flex justify-between items-center mb-4">
+    <div>
+      <nav class="text-gray-500 text-sm mb-2">
+        <span>Workspace</span> / <span>{{workspace.name}}</span> / <span>{{boards.name}}</span>
+      </nav>
+      <h1 class="text-3xl font-bold text-gray-900">{{boards.name}}</h1>
+      <div class="flex items-center mt-4">
+        <div class="flex -space-x-2">
+          <ng-container *ngFor="let user of boards?.members; let i = index">
+            <img class="w-8 h-8 rounded-full border-2 border-white" src="" alt="User 1" *ngIf="i < 3">
+          </ng-container>
+          <div *ngIf="boards?.members.length > 4" class="w-8 h-8 rounded-full border-2 border-white bg-gray-400 flex items-center justify-center text-sm font-medium text-white">
+            +{{boards?.members.length - 4}}
+          </div>
         </div>
       </div>
-      <ul class=" flex flex-col gap-4 items-start pb-4  text-gray-400">
-        <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center">
-          <a routerLink="/user/home" class="hover:text-customBlue flex gap-3 items-center" routerLinkActive="activeLink">
-            <mat-icon>home</mat-icon>
-            <span>Home</span>
-          </a>
-        </li>
-        <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center">
-          <a routerLink="/user/recent" class="hover:text-customBlue flex gap-2 items-center" routerLinkActive="activeLink">
-            <mat-icon>history</mat-icon>
-            <span>Recent</span>
-          </a>
-        </li>
-        <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center">
-          <a routerLink="/user/stared" class="hover:text-customBlue flex gap-3 items-center" routerLinkActive="activeLink">
-            <mat-icon>stars</mat-icon>
-            <span>Stared</span>
-          </a>
-        </li>
-      </ul>
-      <div class="px-2"><hr></div>
-      <div class="py-2 text-gray-400">
-        <div class="flex w-[96%] justify-between items-center">
-          <h1 class="px-6">Boards</h1>
-          <button class="mt-3 px-5">
-            <i class="fa-regular fa-square-plus text-lg pb-2"></i>
-          </button>
+    </div>
+    <div class="flex space-x-4">
+      <button class="bg-white border border-gray-300 px-2 rounded-md shadow-sm">
+        <i class="fa-regular fa-star text-gray-400"></i>
+      </button>
+      <button class="bg-white border border-gray-300 px-2 rounded-md shadow-sm">
+        <i class="fa-solid fa-trash text-gray-400"></i>
+      </button>
+      <button class="border border-gray-300 p-2 rounded-md shadow-sm flex items-center justify-center">
+        <mat-icon class="text-gray-400">video_call</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div cdkDropListGroup class="relative w-full h-auto grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <ng-container *ngFor="let column of columns; let i = index">
+      <div class="column p-4 rounded-md group flex-1" cdkDropList [cdkDropListData]="column.cards || []" (cdkDropListDropped)="drop($event)" [id]="'cdk-drop-list-' + column._id">
+        <div class="flex justify-between border-b-2 p-2 w-full border-black">
+          <h2 class="text-xl w-full ">{{column.columnName}}</h2>
+          <mat-icon class="">more_horiz</mat-icon>
         </div>
-        <ul class="w-full flex flex-col items-start gap-2 text-center py-2">
-          <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center">Home</li>
-          <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center">Home</li>
-          <li class="h-10 hover:bg-gray-100 cursor-pointer rounded-lg w-full flex px-8 justify-start items-center">Home</li>
-        </ul>
+        <div class="flex flex-col gap-1  mt-2 border overflow-auto tasks" *ngIf="column.cards && column.cards.length > 0">
+          <div *ngFor="let card of column.cards" cdkDrag >
+            <app-task-card [card]="card"></app-task-card>
+          </div>
+        </div>
+        <div class="flex justify-between my-4 ml-2 items-center gap-4 w-full sm:w-1/2 md:w-1/4" *ngIf="addingCardIndex==i">
+          <input type="text"
+                 placeholder="Enter the task"
+                 class="outline-customBlue outline-2 outline rounded-sm p-1 hover:bg-gray-100 focus:bg-white w-[90%] md:w-auto"
+                 [(ngModel)]="newCardName">
+          <div class="z-10 flex gap-2 w-[100px] bg-white h-[30px]">
+            <div class="p-2 h-full border shadow-md flex justify-center items-center" (click)="confirmAddCard(i, column._id)">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div class="p-2 h-full border shadow-md flex justify-center items-center" (click)="cancelAddCard()">
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+          </div>
+        </div>
+        <button class="mt-2 bg-gray-100 w-full rounded-md px-4 py-2 text-gray-400 hidden group-hover:block" *ngIf="addingCardIndex!==i" (click)="addCard(i)">Add Card</button>
       </div>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="header  w-full h-16 flex items-center justify-between px-4 border-b">
-        <div class="flex items-center">
-          <button *ngIf="isScreenSmall" (click)="toggleSidebar()" aria-label="Open sidebar" class="flex">
-            <mat-icon>menu</mat-icon>
-          </button>
+    </ng-container>
+    <div class="flex justify-between  items-center gap-4 w-full sm:w-1/2 md:w-1/4" *ngIf="addingColumn">
+      <input type="text"
+             placeholder="Enter the task"
+             class="outline-customBlue outline-2 outline rounded-sm p-1 hover:bg-gray-100 focus:bg-white w-[90%] md:w-auto"
+             [(ngModel)]="newColumnName">
+      <div class="z-10 flex gap-2 w-[100px] bg-white h-[30px]">
+        <div class="p-2 h-full border shadow-md flex justify-center items-center" (click)="confirmAddColumn()">
+          <i class="fa-solid fa-check"></i>
         </div>
-        <ul class="flex md:w-72 w-36 justify-between items-center text-gray-400 ">
-          <li routerLink="" class="space-x-2 hover:text-customBlue flex items-center h-16 hover:border-b-customBlue hover:border-b-4">
-            <i class="fa-solid fa-table"></i>
-            <span class="md:inline hidden">Table</span>
-          </li>
-          <li routerLink="" class="space-x-2 hover:text-customBlue flex items-center h-16 hover:border-b-customBlue hover:border-b-4">
-            <i class="fa-solid fa-chart-simple"></i>
-            <span class="md:inline hidden">Boards</span>
-          </li>
-          <li routerLink="" class="space-x-2 hover:text-customBlue flex items-center h-16 hover:border-b-customBlue hover:border-b-4">
-            <i class="fa-solid fa-calendar-days"></i>
-            <span class="md:inline hidden">Calendar</span>
-          </li>
-        </ul>
-        <div class="flex px-4 py-3 rounded-md border-2 border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif]">
-          <input type="email" placeholder="Search Something..." class="w-full outline-none bg-transparent text-gray-600 text-sm" />
-          <mat-icon>search</mat-icon>
-        </div>
-        <div class="flex w-36 justify-between">
-          <div><i class="fa-regular fa-bell text-2xl"></i></div>
-          <div><i class="fa-regular fa-comment text-2xl"></i></div>
-          <div>icon</div>
+        <div class="p-2 h-full border shadow-md flex justify-center items-center" (click)="cancelAddColumn()">
+          <i class="fa-solid fa-xmark"></i>
         </div>
       </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
-  
+    </div>
+  </div>
+
+  <button *ngIf="!addingColumn" class="bg-customBlue fixed bottom-10 right-10 text-white text-center px-2 py-2 md:px-6 md:py-3 rounded-full float-end flex items-center gap-2" (click)="showAddColumnInput()">
+    <i class="fa-regular fa-square-plus"></i> New Task
+  </button>
+</div>

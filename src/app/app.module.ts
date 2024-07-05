@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/services/authInterceptor.service';
 import { WorkspaceModule } from './workspaces/workspace.module';
 import { BoardsModule } from './boards/boards.module';
+import { TaskModule } from './tasks/tasks.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { BoardsModule } from './boards/boards.module';
     BrowserAnimationsModule,
     UserModule,
     WorkspaceModule,
-    BoardsModule
+    BoardsModule,
+    TaskModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]

@@ -5,6 +5,8 @@ import { workspaceFormService } from "src/app/workspaces/services/workspaceForm.
 import { BoardService } from "../../services/boards.service";
 import { BoardForm } from "../../models/board.interface";
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 @Component({
     selector:'app-boardForm',
@@ -43,6 +45,7 @@ export class BoardFormComponent{
         private workspaceService:workspaceFormService,
         private dialogurRef:MatDialog,
         private fb:FormBuilder, 
+        private router:Router,
         private boardService:BoardService,
         @Inject(MAT_DIALOG_DATA) public data: any 
     ){ this.workspaceId = data.workspaceId} // taking the workspace id from the workspace matdialogue
@@ -75,15 +78,14 @@ export class BoardFormComponent{
     // creating board function
     onSubmit(){
         const boardData = this.boardForm.value
-        console.log(boardData);
-        
         this.boardService.createBoard(boardData as BoardForm).subscribe(
             (response)=>{
-                console.log(response);
+                //navigating to the newly created page
+                this.router.navigateByUrl(`/user/board/${response._id}`)
+                this.dialogurRef.closeAll()
             },
             (err)=>{
                 console.log(err);
-                
             }
         )
     }

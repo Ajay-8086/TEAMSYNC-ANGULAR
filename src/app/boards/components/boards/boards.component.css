@@ -20,5 +20,16 @@
     border-bottom-left-radius: -555px;
   }
   
-  
-  
+  .tasks {
+    max-height:410px; 
+    overflow-y: auto; 
+  }
+  .tasks::-webkit-scrollbar {
+    width: 8px;
+    background: #f1f1f1;
+  }
+  .tasks::-webkit-scrollbar-thumb {
+    background-color: #d9d5f7;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
+  }

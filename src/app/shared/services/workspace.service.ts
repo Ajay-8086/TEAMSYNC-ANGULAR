@@ -10,7 +10,6 @@ export class SendWorkspace{
     workspace$ = this.workspaceDetails.asObservable()
     
     setWorkspace(workspace:any){
-        console.log(workspace,'fdsa');
         this.workspaceDetails.next(workspace)
     }
 }

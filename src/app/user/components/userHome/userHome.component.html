@@ -1,14 +1,20 @@
 <mat-sidenav-container class="h-screen w-full">
-    <mat-sidenav [mode]="isScreenSmall ? 'over' : 'side'" [(opened)]="isSidebarOpen" class="sidebar-content" >
-      <app-sidebar [isSidebarOpen]="isSidebarOpen" [isScreenSmall]="isScreenSmall" [toggleSidebar]="toggleSidebar" [datas]="workspaces" (openingPopup)="dialoge($event)" [content]="'workspace'" ></app-sidebar>
-    </mat-sidenav>
-    <mat-sidenav-content class="bg-white">
-       <div class=" fixed  bg-white z-50 " [ngStyle]="{ 'width': isScreenSmall ? '100%' : 'calc(100% - 14rem)' }">
-        <app-header [isScreenSmall]="isScreenSmall" [toggleSidebar]="toggleSidebar"></app-header>
-       </div>
-       <div class="overflow-y-auto md:mt-16 mt-36  ms-2 ">
-        <router-outlet></router-outlet>
-       </div>
-    </mat-sidenav-content>
+  <mat-sidenav [mode]="isScreenSmall ? 'over' : 'side'" [(opened)]="isSidebarOpen" class="sidebar-content">
+      <app-sidebar 
+          [isSidebarOpen]="isSidebarOpen" 
+          [isScreenSmall]="isScreenSmall" 
+          [toggleSidebar]="toggleSidebar" 
+          [datas]="data" 
+          (openingPopup)="dialoge($event)" 
+          [content]="content">
+      </app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content class="bg-white flex flex-col">
+      <div class="fixed bg-white z-50" [ngStyle]="{ 'width': isScreenSmall ? '100%' : 'calc(100% - 14rem)' }">
+          <app-header [isScreenSmall]="isScreenSmall" [toggleSidebar]="toggleSidebar"></app-header>
+      </div>
+      <div class="flex-grow  md:mt-16 mt-36 ms-2">
+          <router-outlet></router-outlet>
+      </div>
+  </mat-sidenav-content>
 </mat-sidenav-container>
-  

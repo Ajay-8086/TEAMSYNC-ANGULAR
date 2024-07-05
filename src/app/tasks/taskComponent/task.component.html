@@ -1,0 +1,28 @@
+      <!-- <ng-container *ngFor="let column of columns">
+        <div class="column  p-4 rounded-md w-64 border">
+          <h2 class="text-xl font-bold mb-4">{{column.name}}</h2>
+          <div cdkDropList [cdkDropListData]="column.cards" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let card of column.cards" cdkDrag class="card bg-white p-2 mb-2 rounded-md shadow">
+              {{card.name}}
+            </div>
+          </div>
+          <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md" (click)="addCard(column.id)">Add Card</button>
+        </div>
+      </ng-container>
+      <div class="mt-4">
+        <button *ngIf="!addingColumn" class="bg-green-500 text-white px-4 py-2 rounded-md" (click)="showAddColumnInput()">Add Column</button>
+        <div *ngIf="addingColumn" class="flex items-center space-x-2">
+          <input [(ngModel)]="newColumnName" class="border border-gray-300 px-4 py-2 rounded-md" placeholder="Column Name">
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-md" (click)="confirmAddColumn()"  >
+            <i class="fa fa-check"></i>
+          </button>
+          <button class="bg-red-500 text-white px-4 py-2 rounded-md" >
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div> -->
+
+      <!-- card.component.html -->
+<div class="card bg-white p-4 rounded-md shadow-md">
+  <h2 class="">{{card.taskName}}</h2>
+</div>

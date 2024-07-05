@@ -13,13 +13,15 @@ import { ProfileComponent } from "./components/profile/profile.component";
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
+import { BoardsComponent } from "../boards/components/boards/boards.comoponent";
 
 
 const routes:Routes=[
     {path:'',component:UserHomeComponent,canActivate:[AuthGaurd],
         children:[
          {path:'home',component:WorkspacesComponent},
-         {path:'workspaces/:workspaceId',component:WorkspaceComponent}
+         {path:'workspaces/:workspaceId',component:WorkspaceComponent},
+         {path:'board/:boardId',component:BoardsComponent}
         ]
     }
 ]

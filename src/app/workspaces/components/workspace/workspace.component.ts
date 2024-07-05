@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, EventEmitter, Output } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { workspaceFormService } from "../../services/workspaceForm.service";
 import { Workspace } from "../../models/workspace.interface";
 import { MatDialog } from "@angular/material/dialog";
@@ -19,7 +19,8 @@ export class WorkspaceComponent{
         private route:ActivatedRoute,
         private workspaceService:workspaceFormService ,
         private dialogueRef:MatDialog,
-        private boardService:BoardService
+        private boardService:BoardService,
+        private router :Router,
     ){}
     workspaceId!:string | null
     workspace:Workspace | null =null
@@ -101,6 +102,13 @@ export class WorkspaceComponent{
         this.navigateUrl = `${api}/user/workspace_delete/${workspaceId}`
         // passing data to the modal 
         this.dialogueRef.open(DeleteComponent,{data:{navigate:this.navigateUrl,deletionData:'Workspace',workspaceId:workspaceId}})
+    }
+
+    // getting the board details 
+    
+    boardDetail(boardId:string){
+        // this.boardService.setBoardId(boardId)
+        this.router.navigateByUrl(`/user/board/${boardId}`)
     }
 
 }
