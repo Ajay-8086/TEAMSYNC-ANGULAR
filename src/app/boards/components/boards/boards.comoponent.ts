@@ -130,12 +130,12 @@ export class BoardsComponent implements OnInit {
     const previousContainerId = event.previousContainer.id.split('-').pop()
     const containerId = event.container.id.split('-').pop()
     if(previousContainerId && containerId){
+      const taskId = event.item.data._id; 
       if (event.previousContainer === event.container) {
-        console.log(containerId);
-        console.log(event.container.data)
         // Move item within the same container
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
-       
+        // update if the data is move in teh same container 
+        this.updateTaskPosition(containerId,taskId,event.previousIndex,event.currentIndex,'same','current')
       } else {
         // Transfer item between containers
         transferArrayItem(
@@ -144,8 +144,21 @@ export class BoardsComponent implements OnInit {
           event.previousIndex,
           event.currentIndex
         );
+        // passing the task data and the container data to update
+        this.updateTaskPosition(previousContainerId,taskId,event.previousIndex,event.currentIndex,'diff','previous')
+        this.updateTaskPosition(containerId,taskId,event.previousIndex,event.currentIndex,'diff','new')
       }
     }
   }
- 
+  // updating the task postions 
+  updateTaskPosition(columnId:string,taskId:string,position:number,newPos:number,moving:string,container:string){
+      this.taskService.updateTaskPosition(taskId,columnId,position,newPos,moving,container).subscribe(
+        (result)=>{
+          console.log(result);
+        },
+        (err)=>{
+          console.log(err);
+        }
+      )
+  }
 }

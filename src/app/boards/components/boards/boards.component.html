@@ -37,7 +37,7 @@
           <mat-icon class="">more_horiz</mat-icon>
         </div>
         <div class="flex flex-col gap-1  mt-2 border overflow-auto tasks" *ngIf="column.cards && column.cards.length > 0">
-          <div *ngFor="let card of column.cards" cdkDrag >
+          <div *ngFor="let card of column.cards" cdkDrag [cdkDragData]="card" >
             <app-task-card [card]="card"></app-task-card>
           </div>
         </div>

@@ -16,8 +16,9 @@ export class TaskService{
         return this.http.post(url,{columnId,taskName})
     }
       // Update task position
-  updateTaskPosition(taskId: string, columnId: string, position: number): Observable<any> {
-    return this.http.put(`${this.api}/task/${taskId}/position`, { columnId, position });
+  updateTaskPosition(taskId: string, columnId: string, position: number ,newPos:number,moving:string,container:string): Observable<any> {
+    const url = `${this.api}/task/position`
+    return this.http.put(url, { columnId, position,taskId ,newPos,moving,container});
   }
 
 }
