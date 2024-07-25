@@ -8,6 +8,8 @@ import { BoardForm } from "src/app/boards/models/board.interface";
 import { BoardService } from "src/app/boards/services/boards.service";
 import { environment } from "src/environments/environment";
 import { DeleteComponent } from "src/app/shared/components/deleteComponent/delete.componet";
+import { AddingMemberComponent } from "src/app/shared/components/forms/addingMember/addingMember.component";
+import { User } from "src/app/user/models/user.interface";
 
 
 @Component({
@@ -24,8 +26,9 @@ export class WorkspaceComponent{
     ){}
     workspaceId!:string | null
     workspace:Workspace | null =null
-    members!:string[]
+    members:User[] =[]
     boards:BoardForm[] =[]
+    memberColors: string[] = [];
     //workspace id getting function
     ngOnInit():void{
         this.route.paramMap.subscribe(params=>{
@@ -42,6 +45,7 @@ export class WorkspaceComponent{
             (data)=>{
                 this.workspace = data.workspaceDetails
                 this.members = data.workspaceDetails.members
+                this.generateMemberColor()                
                 this.boards = data.boards
             },
             (error)=>[
@@ -111,4 +115,24 @@ export class WorkspaceComponent{
         this.router.navigateByUrl(`/user/board/${boardId}`)
     }
 
+    // inviting member
+    inviteMembers(workspceId:string | undefined){
+        this.dialogueRef.open(AddingMemberComponent,{
+            data:{workspaceId:workspceId}
+        })
+    }
+
+    // generating random colors for the avatar bg
+     generateMemberColor(){
+        this.memberColors = this.members.map(()=>this.generateRandomColor());
+     }
+
+     generateRandomColor():string{
+        let letters = '0123456789ABCDE'
+        let color = '#'
+        for(let i = 0; i < 6; i++){
+            color += letters[Math.floor(Math.random()*16)]
+        }
+        return color
+     }
 }

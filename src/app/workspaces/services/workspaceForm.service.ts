@@ -25,7 +25,6 @@ export class workspaceFormService{
     // searching members function
     searchingMembers(query:string):Observable<Member>{
         const url = `${this.api}/member_search`
-        
         return this.http.post<Member>(url,{query})
     }
     // Inviting members function
@@ -37,5 +36,15 @@ export class workspaceFormService{
     getWorkspaceById(workspaceId:string):Observable<any>{
         const url = `${this.api}/user/workspaces/${workspaceId}`
         return this.http.get<any>(url)
+    }
+    getPendingInvitations():Observable<any>{
+        const url = `${this.api}/invitations`
+        return this.http.get<any>(url)
+    }
+    // accepting the invitations
+    invitationHandle(invitationId:string,action:string):Observable<any>{
+        const url = `${this.api}/invitations/${action}`
+        const body = {invitationId}
+        return this.http.patch<any>(url,body)
     }
 }

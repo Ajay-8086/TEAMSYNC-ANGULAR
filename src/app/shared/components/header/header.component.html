@@ -29,8 +29,8 @@
       <mat-icon>search</mat-icon>
     </div>
     <div class="flex w-36 justify-around">
-      <div><i class="fa-regular fa-bell text-2xl"></i></div>
-      <div><i class="fa-regular fa-comment text-2xl"></i></div>
+      <div (click)="notifications()"><i class="fa-regular fa-bell text-2xl"></i></div>
+      <div (click)="chat()"><i class="fa-regular fa-comment text-2xl"></i></div>
       <div>  
         <button class="py-[.3rem] px-[.5rem] rounded-[100%] bg-blue-800 text-white text-sm md:text-base" (click)="showProfile()">
           {{icon}}

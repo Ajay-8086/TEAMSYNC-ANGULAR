@@ -26,7 +26,7 @@ export class LoginComponent{
         this.authService.login(loginData).subscribe(
             (response:any)=>{
                const  token = response.token
-                     this.socketService.connect(token)
+                
                     this.router.navigate(['/user/home'])
             },
             (error)=>{

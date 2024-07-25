@@ -48,26 +48,25 @@ export class BoardsComponent implements OnInit {
   newCardName: string = '';
   // Initialize the component
   ngOnInit(): void {
-    // Subscribe to route parameters to get the board ID
     this.router.paramMap.subscribe(params => {
-      this.boardId = params.get('boardId');
-      if (this.boardId) {
-        this.boardService.setBoardId(this.boardId);
-        // Fetch the boards and columns for the workspace
-        this.boardService.getBoardsInWorkspace(this.boardId).subscribe(
-          (result) => {
-            this.workspace = result.workspace;
-            this.boards = result.boardDetails;
-            this.members = result.boardDetails.members;
-            this.columns = result.columns;
-          },
-          (err) => {
-            console.error(err);
-          }
-        );
-      }
+        this.boardId = params.get('boardId');
+        if (this.boardId) {
+            this.boardService.setBoardId(this.boardId);
+            this.boardService.getBoardsInWorkspace(this.boardId).subscribe(
+                (result) => {
+                    this.workspace = result.workspace;
+                    this.boards = result.boardDetails;
+                    this.members = result.boardDetails.members;
+                    this.columns = result.columns;
+                },
+                (err) => {
+                    console.error(err);
+                }
+            );
+        }
     });
-  }
+}
+
 
   // Show the input field for adding a new column
   showAddColumnInput() {

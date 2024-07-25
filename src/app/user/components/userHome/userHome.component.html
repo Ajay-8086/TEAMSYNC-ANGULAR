@@ -11,10 +11,15 @@
   </mat-sidenav>
   <mat-sidenav-content class="bg-white flex flex-col">
       <div class="fixed bg-white z-50" [ngStyle]="{ 'width': isScreenSmall ? '100%' : 'calc(100% - 14rem)' }">
-          <app-header [isScreenSmall]="isScreenSmall" [toggleSidebar]="toggleSidebar"></app-header>
+          <app-header [isScreenSmall]="isScreenSmall" [toggleSidebar]="toggleSidebar" (chatOn)="chatOn($event)"></app-header>
       </div>
-      <div class="flex-grow  md:mt-16 mt-36 ms-2">
-          <router-outlet></router-outlet>
+      <div class="flex-grow  md:mt-16 mt-36 ms-2" >
+          <div id="mySidenav" class="sidenav"[ngStyle]="{'width':datafor ? '250px':'0px'}">
+            <a href="javascript:void(0)" class="closebtn " (click)="closeNav()" ><i class="fa-solid fa-xmark"></i></a>
+          </div>
+          <div [ngStyle]="{'margin-right':datafor ? '250px':'0px'}">
+            <router-outlet></router-outlet>
+          </div>
       </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

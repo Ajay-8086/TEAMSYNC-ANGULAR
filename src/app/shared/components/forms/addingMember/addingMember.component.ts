@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
-import {MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, Input } from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Member } from 'src/app/shared/model/member';
+import { SocketService } from 'src/app/shared/services/socket.service';
 import { SendWorkspace } from 'src/app/shared/services/workspace.service';
 import { Workspace } from 'src/app/workspaces/models/workspace.interface';
 import { workspaceFormService } from 'src/app/workspaces/services/workspaceForm.service';
@@ -15,21 +16,22 @@ export class AddingMemberComponent{
   constructor(
     private workspaceService:workspaceFormService ,
     private router:Router,
-    private dialogRef:MatDialogRef<AddingMemberComponent>,
-    private sendWrorkspace:SendWorkspace
+  @Inject(MAT_DIALOG_DATA) public data:{workspaceId:string},
+    // private sendWrorkspace:SendWorkspace
+    private socketService:SocketService,
+    public dialogRef: MatDialogRef<AddingMemberComponent>,
   ){}
   searchTerm: string = '';
   // getting workspace id
-  @Input() workspace !:Workspace
+  // @Input() workspace !:Workspace
   // members array variable
   searchResults: Member[] | any = [];
  //selected user
   selectedUser:Member[]=[]
+  errorMsg:string = ''
   // searching the available users
   searching(){
     if(this.searchTerm.length >= 3){
-      console.log(this.searchTerm);
-      
       this.workspaceService.searchingMembers(this.searchTerm).subscribe(
         (result)=>{
           this.searchResults = result
@@ -38,7 +40,7 @@ export class AddingMemberComponent{
         console.log(err);
         
       }
-      )
+    )
     }
   }
   // selected user the user 
@@ -55,19 +57,30 @@ export class AddingMemberComponent{
   }
   // inviting members to the wokspace
   onSubmit(){
-    this.workspaceService.inviteMembers(this.selectedUser,this.workspace._id).subscribe(
+    this.workspaceService.inviteMembers(this.selectedUser,this.data.workspaceId).subscribe(
       (result)=>{
         console.log(result);
+        this.selectedUser.forEach(user => {
+          const invitation = {
+            userId: user._id,
+            workspaceId: this.data.workspaceId,
+            message: 'You have been invited to join the workspace.'
+          };
+          this.socketService.sendInvitation(user._id, invitation);
+          this.closeDialogue()
+        });
       },
       (err)=>{
-        console.log(err);
+        console.log(err.error);
+        this.errorMsg = err.error
+        setTimeout(() => {
+          this.errorMsg = ''
+        }, 2000);
       }
     )
   }
   // closing dialog and redirecting to home
   closeDialogue(){
-    this.router.navigateByUrl('/user/home')
-
     this.dialogRef.close()
   }
 }

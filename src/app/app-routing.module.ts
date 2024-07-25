@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/components/home.component';
 import { ProfileComponent } from './user/components/profile/profile.component';
-import { BoardsComponent } from './boards/components/boards/boards.comoponent';
+import { BoardsComponent } from './boards/components/boards/boards.component';
 
 const routes: Routes = [
   // default route

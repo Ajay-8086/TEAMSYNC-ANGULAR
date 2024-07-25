@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { BoardsComponent } from "./components/boards/boards.comoponent";
+import { BoardsComponent } from "./components/boards/boards.component";
 import { CommonModule } from "@angular/common";
 import { BoardFormComponent } from "./components/boardForm/boardForm.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";

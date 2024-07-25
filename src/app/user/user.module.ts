@@ -13,7 +13,8 @@ import { ProfileComponent } from "./components/profile/profile.component";
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
-import { BoardsComponent } from "../boards/components/boards/boards.comoponent";
+import { BoardsComponent } from "../boards/components/boards/boards.component";
+import { WorkspaceModule } from "../workspaces/workspace.module";
 
 
 const routes:Routes=[
@@ -27,8 +28,16 @@ const routes:Routes=[
 ]
 @NgModule({
     declarations:[UserHomeComponent,UserProfileComponent,ProfileComponent],
-    imports:[CommonModule,SharedModule,RouterModule.forChild(routes),MatDialogModule,FormsModule,MatTooltipModule,  MatListModule,
-        MatSidenavModule],
+    imports:[
+        CommonModule,
+        SharedModule,
+        RouterModule.forChild(routes),
+        MatDialogModule,
+        FormsModule,
+        MatTooltipModule,
+        MatListModule,
+        MatSidenavModule,
+    ],
     providers:[],
 })
 export class UserModule{

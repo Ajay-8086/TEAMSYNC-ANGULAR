@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { workspaceFormService } from "../../../workspaces/services/workspaceForm.service";
 import { workspaceFormData } from "../../model/workspaceForm.model";
 import { Workspace } from "src/app/workspaces/models/workspace.interface";
 import { SendWorkspace } from "../../services/workspace.service";
+import { AddingMemberComponent } from "./addingMember/addingMember.component";
 
 @Component({
     selector:'app-forms',
@@ -13,7 +14,7 @@ import { SendWorkspace } from "../../services/workspace.service";
     
 })
 export class FormComponent{
-    constructor(private dialogurRef:MatDialogRef<FormComponent>,private fb:FormBuilder,private workspaceService:workspaceFormService,private sendWorkspace:SendWorkspace){}
+    constructor(private dialogurRef:MatDialogRef<FormComponent>,private dialog:MatDialog,private fb:FormBuilder,private workspaceService:workspaceFormService,private sendWorkspace:SendWorkspace){}
     // pop up closing method 
     dialoguClose(){
         this.dialogurRef.close()
@@ -30,7 +31,6 @@ export class FormComponent{
     selectedFocus:boolean=false
     workspaceData!:workspaceFormData
     // adding member component variable
-    memberComponent:boolean=false
     //workspaceId
     workspace!:Workspace
     // creating workspace form submission
@@ -42,7 +42,10 @@ export class FormComponent{
                this.msg =  response.message
                this.workspace = response.newWorkspace
                 this.sendWorkspace.setWorkspace(response.allWorkspaces)
-               this.memberComponent = true
+                this.dialogurRef.close()
+                this.dialog.open(AddingMemberComponent,{
+                    data:{workspaceId:this.workspace._id}
+                })
             },
             (err)=>{
                 console.log(err);

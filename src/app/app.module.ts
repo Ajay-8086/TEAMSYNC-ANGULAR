@@ -11,6 +11,7 @@ import { AuthInterceptor } from './auth/services/authInterceptor.service';
 import { WorkspaceModule } from './workspaces/workspace.module';
 import { BoardsModule } from './boards/boards.module';
 import { TaskModule } from './tasks/tasks.module';
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,0 +1,28 @@
+<div class="w-[300px] md:w-[400px] flex flex-col max-h-[40rem] h-[30rem] rounded-lg border overflow-hidden bg-white">
+    <!-- Header -->
+    <div class="flex justify-between w-full h-[3rem] items-center px-2">
+      <div class="flex-1">
+        <h1 class="font-medium text-base sm:text-lg">Notifications</h1>
+      </div>
+      <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2">
+          <div class="text-sm">Only Show unread</div>
+          <input type="checkbox" class="form-checkbox w-5 h-5">
+        </div>
+        <i class="fa-solid fa-xmark md:inline hidden" (click)="close()"></i>
+      </div>
+    </div>
+    <!-- Tabs -->
+    <div class="w-full border-b h-[3rem] shadow-sm">
+      <ul class="flex md:justify-around justify-start gap-8 md:gap-0 ms-2 w-full md:w-2/3 items-end h-full sm:text-base">
+        <li (click)="setActiveTab('All')" [class.active]="activeTab === 'All'" class="cursor-pointer">All</li>
+        <li (click)="gotoInvitation()" [class.active]="activeTab === 'Invitations'" class="cursor-pointer">Invitations</li>
+        <li (click)="setActiveTab('Meetings')" [class.active]="activeTab === 'Meetings'" class="cursor-pointer">Meetings</li>
+      </ul>
+    </div>
+    <!-- Content -->
+    <div class="flex-1 overflow-y-auto p-2">
+      <app-invitations *ngIf="invitation"></app-invitations>
+    </div>
+  </div>
+  

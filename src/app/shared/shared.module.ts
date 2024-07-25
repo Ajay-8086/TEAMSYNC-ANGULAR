@@ -12,6 +12,7 @@ import { DeleteComponent } from './components/deleteComponent/delete.componet';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -20,6 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     AddingMemberComponent,
     CardComponent,
     DeleteComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -28,9 +30,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     FormsModule,
     RouterModule,
     MatListModule,
-    MatSidenavModule
-    
-  ],
+    MatSidenavModule,
+   
+],
   providers: [],
   exports: [
     HeaderComponent,

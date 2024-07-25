@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { UserProfileComponent } from "../../../user/components/userProfilePopup/userProfile.component";
 import { TokenDecodeService } from "src/app/user/services/tokenDecode.service";
+import { NotificationComponent } from "src/app/workspaces/components/notifications/notification.component";
 
 @Component({
     selector:'app-header',
@@ -34,5 +35,18 @@ export class HeaderComponent{
             this.icon = userData.userName.split('')[0].toUpperCase()
         }
     }
+    // opening the caht sidebar
+    @Output() chatOn = new EventEmitter<boolean>()
+    chat(){
+        this.chatOn.emit(true)
+    }
+    // notification popup
+    notifications(){
+        this.dialogRef.open(NotificationComponent,{
+            position: { top: '4rem', right: '3rem' },
+            backdropClass:'transparent-backdrop'
+        })
+    }
 
+    
 }

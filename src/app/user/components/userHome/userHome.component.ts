@@ -81,4 +81,14 @@ export class UserHomeComponent{
           this.dialogueRef.open(BoardFormComponent,{data:{workspaceId:this.workspaceId}})
         }
     }   
+    datafor:boolean = false
+    from:string = ''
+    chatOn(eventData:boolean){
+      this.datafor = eventData
+    }
+    closeNav(){;
+      this.datafor = false
+      
+    }
+  
 }

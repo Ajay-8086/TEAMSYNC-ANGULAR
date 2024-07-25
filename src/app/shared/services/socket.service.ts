@@ -1,40 +1,54 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Socket, io } from "socket.io-client";
-import { environment } from "src/environments/environment";
+// socket.service.ts
+
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { io, Socket } from 'socket.io-client';
+import { environment } from 'src/environments/environment';
+import  {jwtDecode} from 'jwt-decode';
 
 @Injectable({
-    providedIn:'root'
+  providedIn: 'root'
 })
-export class SocketService{
-    socket:Socket | undefined
-//function connecting to the socket.io
-connect(token: string): void {
-    this.socket = io(environment.socketUrl, {
-      auth: {
-        token: token
-      }
-    });
+export class SocketService {
+  private socket!: Socket;
+
+  constructor() {
+    this.connect();
+  }
+
+  connect() {
+    this.socket = io(environment.socketUrl); 
+    console.log('Socket connected:', this.socket.connected);
 
     this.socket.on('connect', () => {
-      console.log('Connected to socket server');
-    });
-
-    this.socket.on('connect_error', (err) => {
-      console.log(`Connection error: ${err.message}`);
+      const token = localStorage.getItem('token'); 
+  if (token) {
+    const decodedToken = jwtDecode(token) as { userId: string };
+    // Register the user with the server using the decoded userId
+    this.socket.emit('registerUser', decodedToken.userId);
+  } else {
+    console.error('No token found!');
+  }
     });
 
     this.socket.on('disconnect', () => {
-      console.log('Disconnected from socket server');
+      console.log('Socket disconnected');
     });
   }
 
-    // function to disconnect the socket
-    disconnect(){
-        if(!this.socket){
-            console.log('socket not connected');
-            
-        }
-        this.socket?.disconnect()
-    }
+  sendInvitation(userId: string, invitation: any) {
+    this.socket.emit('sendInvitation', { userId, invitation });
+  }
+
+  onReceiveInvitation(): Observable<any> {
+    return new Observable(observer => {
+      this.socket.on('receiveInvitation', (invitation) => {
+        observer.next(invitation);
+      });
+
+      return () => {
+        this.socket.off('receiveInvitation');
+      };
+    });
+  }
 }
